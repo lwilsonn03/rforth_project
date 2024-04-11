@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/int_stack_tests.dir/int_stack_tests.cc.o CMakeFiles/int_stack_tests.dir/int_stack.c.o -o ../bin/int_stack_tests  ../lib/libgtest_main.a -lpthread ../lib/libgtest.a 

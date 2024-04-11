@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/c/Users/lwils/OneDrive/School/c-bootcamp-lwilson21/build/R_FORTH/int_stack_tests[1]_tests.cmake")
+  include("/mnt/c/Users/lwils/OneDrive/School/c-bootcamp-lwilson21/build/R_FORTH/int_stack_tests[1]_tests.cmake")
+else()
+  add_test(int_stack_tests_NOT_BUILT int_stack_tests_NOT_BUILT)
+endif()
