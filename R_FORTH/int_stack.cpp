@@ -55,7 +55,7 @@ Class Stack{
         //     }
         //     return 0; // fail
         // }
-
+        //EMILIE
         int int_stack_pop(int_stack_t *stk, int *top_value) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
@@ -68,7 +68,7 @@ Class Stack{
             }
             return 0; // fail
         }
-
+        //EMILIE
         int int_stack_top(int_stack_t *stk, int *top_value) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
@@ -268,7 +268,7 @@ Class Stack{
         int int_stack_function(int_stack_t *stk) {
             
         }
-
+        //EMILIE
         void int_stack_print(int_stack_t *stk, FILE *file) {
             int_entry_t *entry;
             int pos = 0;
@@ -288,7 +288,7 @@ Class Stack{
         int intStackSize() {
             return size;
         }
-
+        //EMILIE
         int int_stack_capacity(int_stack_t* stk) {
             return stk->capacity;
         }
