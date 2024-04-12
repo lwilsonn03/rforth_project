@@ -8,6 +8,12 @@ Class IntEntry{
     //original has "SLIST_ENTRY(int_entry) entries;"
 }
 
+
+//current main dilemma is how to manage the contents of the stack.
+//an array seems like a simple solution, until you realize you can't
+//create the array until a stack object is made, since arrays have
+//immutable size. 
+
 Class Stack{
     int capacity;
     int size;
