@@ -1,10 +1,8 @@
-// int_stack.c
+// int_stack.cpp
 
-#include "int_stack.h"
+#include <iostream>
 
-#include <stdlib.h>
-#include <stdio.h>
-
+//possibly unecessary, just copying c structure
 Class IntEntry{
     int value;
     //original has "SLIST_ENTRY(int_entry) entries;"
@@ -14,36 +12,43 @@ Class Stack{
     int capacity;
     int size;
     //head- original reads "SLIST_HEAD(stackhead, int_entry) head"
+    int *contents;
 
     public:  
 
 
-        Stack(int c, int s){
+        Stack(int c){
             capacity = c;
-            size = s;
+            size = 0;
+            int arr[c];
+            *contents = arr;
         }
-        
+
         // void int_stack_init(int_stack_t *stk, int capacity) {
         //     SLIST_INIT(&stk->head);
         //     stk->size = 0;
         //     stk->capacity = capacity;
         // }
 
-        int int_stack_push(int_stack_t *stk, int value) {
-            if (stk->size >= stk->capacity) {
-                cout << "Stack is at full capacity.\n";
-                return 0; // fail
-            }
+        int intStackPush(int v){
 
-            int_entry_t *newEntry = malloc(sizeof(int_entry_t));
-            if (newEntry) {
-                newEntry->value = value;
-                SLIST_INSERT_HEAD(&stk->head, newEntry, entries);
-                stk->size++;
-                return 1; //success
-            }
-            return 0; // fail
         }
+
+        // int int_stack_push(int_stack_t *stk, int value) {
+        //     if (stk->size >= stk->capacity) {
+        //         cout << "Stack is at full capacity.\n";
+        //         return 0; // fail
+        //     }
+
+        //     int_entry_t *newEntry = malloc(sizeof(int_entry_t));
+        //     if (newEntry) {
+        //         newEntry->value = value;
+        //         SLIST_INSERT_HEAD(&stk->head, newEntry, entries);
+        //         stk->size++;
+        //         return 1; //success
+        //     }
+        //     return 0; // fail
+        // }
 
         int int_stack_pop(int_stack_t *stk, int *top_value) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
@@ -274,8 +279,8 @@ Class Stack{
 
 
 
-        int int_stack_size(int_stack_t* stk) {
-            return stk->size;
+        int intStackSize() {
+            return size;
         }
 
         int int_stack_capacity(int_stack_t* stk) {
