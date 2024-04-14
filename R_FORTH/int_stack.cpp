@@ -12,13 +12,14 @@ Class IntEntry{
 //current main dilemma is how to manage the contents of the stack.
 //an array seems like a simple solution, until you realize you can't
 //create the array until a stack object is made, since arrays have
-//immutable size. 
+//immutable size. Decided to just replace contents with new array
+//on object creation.
 
 Class Stack{
     int capacity;
     int size;
     //head- original reads "SLIST_HEAD(stackhead, int_entry) head"
-    int *contents;
+    int contents[1];
 
     public:  
 
@@ -27,7 +28,7 @@ Class Stack{
             capacity = c;
             size = 0;
             int arr[c];
-            *contents = arr;
+            contents = arr;
         }
 
         // void int_stack_init(int_stack_t *stk, int capacity) {
@@ -36,26 +37,22 @@ Class Stack{
         //     stk->capacity = capacity;
         // }
 
-        int intStackPush(int v){
 
+
+        /* ---CURRENT STORAGE METHOD--- */
+
+        //The position in the stack as stored in the array is 
+        //currently arr[0] = first stack item 
+        int intStackPush(int v){
+            if (size >= capacity){ 
+                cout << "Stack is at full capacity.\n";
+                return 0; //fail
+            }
+            arr[size - 1] = v;
+            size++;
+            return 1; //success
         }
 
-        // int int_stack_push(int_stack_t *stk, int value) {
-        //     if (stk->size >= stk->capacity) {
-        //         cout << "Stack is at full capacity.\n";
-        //         return 0; // fail
-        //     }
-
-        //     int_entry_t *newEntry = malloc(sizeof(int_entry_t));
-        //     if (newEntry) {
-        //         newEntry->value = value;
-        //         SLIST_INSERT_HEAD(&stk->head, newEntry, entries);
-        //         stk->size++;
-        //         return 1; //success
-        //     }
-        //     return 0; // fail
-        // }
-        //EMILIE
         int int_stack_pop(int_stack_t *stk, int *top_value) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
@@ -68,7 +65,7 @@ Class Stack{
             }
             return 0; // fail
         }
-        //EMILIE
+
         int int_stack_top(int_stack_t *stk, int *top_value) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
@@ -80,12 +77,13 @@ Class Stack{
 
         /* Functions for FORTH langauge stack operators */
 
-        int int_stack_dup(int_stack_t *stk) {
-            if (stk->size < 1)
-                return 0;
-            int top_value;
-            int_stack_top(stk, &top_value);
-            return int_stack_push(stk, top_value); // success only if last operation succeeds
+
+        int intStackDup(){
+            if (size < 1){ //no value to dup
+                return 0; //fail
+            }
+            int topValue = intStackTop(); //subject to change, assumes intStackTop needs no arguments
+            return intStackPush(topValue); //will return 1 if push success
         }
 
         int int_stack_swap(int_stack_t *stk) {
@@ -268,7 +266,7 @@ Class Stack{
         int int_stack_function(int_stack_t *stk) {
             
         }
-        //EMILIE
+
         void int_stack_print(int_stack_t *stk, FILE *file) {
             int_entry_t *entry;
             int pos = 0;
@@ -288,7 +286,7 @@ Class Stack{
         int intStackSize() {
             return size;
         }
-        //EMILIE
+
         int int_stack_capacity(int_stack_t* stk) {
             return stk->capacity;
         }
