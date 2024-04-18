@@ -53,14 +53,14 @@ TEST(IntStackTests, PushToCapcacityPopUntilUnderflow)
 
     // now drain it one item at a time, ensuring each item is the value expected
     for (int i=capacity-1; i >= 0; i--) {
-        int top_value;
-        int result = intStackPop(&stack1, &top_value);
-        ASSERT_EQ(i, top_value);
+        int topValue;
+        int result = intStackPop(&stack1, &topValue);
+        ASSERT_EQ(i, topValue);
     }
 
     // try to remove from empty stack and ensure it fails
-    int top_value;
-    int result = intStackPop(&stack1, &top_value);
+    int topValue;
+    int result = intStackPop(&stack1, &topValue);
     ASSERT_FALSE(result);
 }
 

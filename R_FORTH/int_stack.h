@@ -19,8 +19,8 @@ typedef struct int_stack {
 
 extern void int_stack_init(int_stack_t *stk, int capacity);
 extern int intStackPush(int_stack_t *stk, int value);
-extern int intStackPop(int_stack_t *stk, int *top_value);
-extern int intStackTop(int_stack_t *stk, int *top_value);
+extern int intStackPop(int_stack_t *stk, int *topValue);
+extern int intStackTop(int_stack_t *stk, int *topValue);
 extern int int_stack_dup(int_stack_t *stk);
 extern int intStackSwap(int_stack_t *stk);
 extern int int_stack_over(int_stack_t *stk);

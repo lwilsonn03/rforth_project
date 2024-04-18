@@ -23,8 +23,8 @@ int main() {
 
     // Pop values from the stack and print them.
     for (int i = 0; i < capacity; i++) {
-        int top_value;
-        int success = intStackPop(&myStack, &top_value);
+        int topValue;
+        int success = intStackPop(&myStack, &topValue);
         if (!success) {
             fprintf(stderr, "Stack empty\n");
         }
