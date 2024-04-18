@@ -49,13 +49,13 @@ int main(int argc, char * * argv){
             *tok = (char)(*tok);
             switch(*tok){
                 case '+':
-                    int_stack_add(&theStack);
+                    intStackAdd(&theStack);
                     break;
                 case '-':
-                    int_stack_subtract(&theStack);
+                    intStackSubtract(&theStack);
                     break;
                 case '*':
-                    int_stack_multiply(&theStack);
+                    intStackMultiply(&theStack);
                     break;
                 case '/':
                     int_stack_divide(&theStack);

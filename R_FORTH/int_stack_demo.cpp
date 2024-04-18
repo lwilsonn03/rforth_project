@@ -38,13 +38,13 @@ int main() {
     intStackPush(&myStack, 7);
     intStackPush(&myStack, 8);
     int_stack_print(&myStack, stdout);
-    int_stack_swap(&myStack);
+    intStackSwap(&myStack);
     int_stack_print(&myStack, stdout);
-    int_stack_add(&myStack);
+    intStackAdd(&myStack);
     int_stack_print(&myStack, stdout); // hopefully, 15 only item on stack!
     int_stack_dup(&myStack);
     int_stack_print(&myStack, stdout); // hopefully, 15 only item on stack!
-    int_stack_add(&myStack);
+    intStackAdd(&myStack);
     int_stack_print(&myStack, stdout); // hopefully, 30 only item on stack!
     return 0;
 }

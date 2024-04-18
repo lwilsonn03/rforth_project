@@ -86,7 +86,7 @@ Class Stack{
             return intStackPush(topValue); //will return 1 if push success
         }
 
-        int int_stack_swap(int_stack_t *stk) {
+        int intStackSwap(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
@@ -127,7 +127,7 @@ Class Stack{
             return intStackPop(stk, &top_value);
         }
 
-        int int_stack_2swap(int_stack_t *stk) {
+        int intStack2Swap(int_stack_t *stk) {
             if (stk->size < 4)
                 return 0;
             int top_value, next_to_top_value, third_value, fourth_value;
@@ -141,7 +141,7 @@ Class Stack{
             return intStackPush(stk, next_to_top_value); // success only if last operation succeeds
         }
 
-        int int_stack_2drop(int_stack_t *stk) {
+        int intStack2Drop(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
@@ -149,7 +149,7 @@ Class Stack{
             return intStackPop(stk, &next_to_top_value);
         }
 
-        int int_stack_2dup(int_stack_t *stk) {
+        int intStack2Dup(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
@@ -161,7 +161,7 @@ Class Stack{
             return intStackPush(stk, top_value);
         }
 
-        int int_stack_2over(int_stack_t *stk) {
+        int intStack2Over(int_stack_t *stk) {
             if (stk->size < 4)
                 return 0;
             int top_value, next_to_top_value, third_value, fourth_value;
@@ -179,7 +179,7 @@ Class Stack{
 
         /* Example of how to create a binary operator that works o top two elements (if present) */
 
-        int int_stack_add(int_stack_t *stk) {
+        int intStackAdd(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
@@ -188,7 +188,7 @@ Class Stack{
             return intStackPush(stk, top_value + next_to_top_value);
         }
 
-        int int_stack_subtract(int_stack_t *stk) {
+        int intStackSubtract(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
@@ -197,7 +197,7 @@ Class Stack{
             return intStackPush(stk, next_to_top_value - top_value);
         }
 
-        int int_stack_multiply(int_stack_t *stk) {
+        int intStackMultiply(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
