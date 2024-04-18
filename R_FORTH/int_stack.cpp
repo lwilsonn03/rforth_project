@@ -53,7 +53,7 @@ Class Stack{
             return 1; //success
         }
 
-        int int_stack_pop(int_stack_t *stk, int *top_value) {
+        int intStackPop(int_stack_t *stk, int *top_value) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
                 int value = entry->value;
@@ -66,7 +66,7 @@ Class Stack{
             return 0; // fail
         }
 
-        int int_stack_top(int_stack_t *stk, int *top_value) {
+        int intStackTop(int_stack_t *stk, int *top_value) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
                 *top_value = entry->value;
@@ -90,90 +90,91 @@ Class Stack{
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            int_stack_push(stk, top_value);
-            return int_stack_push(stk, next_to_top_value); // success only if last operation succeeds
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            intStackPush(stk, top_value);
+            return intStackPush(stk, next_to_top_value); // success only if last operation succeeds
         }
 
-        int int_stack_over(int_stack_t *stk) {
-            if (stk->size < 2)
-                return 0;
-            int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            int_stack_push(stk, next_to_top_value);
-            int_stack_push(stk, top_value);
-            return int_stack_push(stk, next_to_top_value); // success only if last operation succeeds
+        int intStackOver() {
+            if (size < 2){
+                return 0; //must have 2 values to do over
+            }
+            int topValue, nextToTopValue;
+            intStackPop(&topValue); //TODO: once pop is rewritten, ensure this works
+            intStackPop(&nextToTopValue);
+            intStackPush(nextToTopValue);
+            intStackPush(topValue);
+            return intStackPush(nextToTopValue);
         }
 
         int int_stack_rot(int_stack_t *stk) {
             if (stk->size < 3)
                 return 0;
             int top_value, next_to_top_value, third_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            int_stack_pop(stk, &third_value);
-            int_stack_push(stk, next_to_top_value);
-            int_stack_push(stk, top_value);
-            return int_stack_push(stk, third_value); // success only if last operation succeeds
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            intStackPop(stk, &third_value);
+            intStackPush(stk, next_to_top_value);
+            intStackPush(stk, top_value);
+            return intStackPush(stk, third_value); // success only if last operation succeeds
         }
 
         int int_stack_drop(int_stack_t *stk) {
             if (stk->size < 1)
                 return 0;
             int top_value, next_to_top_value;
-            return int_stack_pop(stk, &top_value);
+            return intStackPop(stk, &top_value);
         }
 
         int int_stack_2swap(int_stack_t *stk) {
             if (stk->size < 4)
                 return 0;
             int top_value, next_to_top_value, third_value, fourth_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            int_stack_pop(stk, &third_value);
-            int_stack_pop(stk, &fourth_value);
-            int_stack_push(stk, third_value);
-            int_stack_push(stk, fourth_value);
-            int_stack_push(stk, top_value);
-            return int_stack_push(stk, next_to_top_value); // success only if last operation succeeds
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            intStackPop(stk, &third_value);
+            intStackPop(stk, &fourth_value);
+            intStackPush(stk, third_value);
+            intStackPush(stk, fourth_value);
+            intStackPush(stk, top_value);
+            return intStackPush(stk, next_to_top_value); // success only if last operation succeeds
         }
 
         int int_stack_2drop(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            return int_stack_pop(stk, &next_to_top_value);
+            intStackPop(stk, &top_value);
+            return intStackPop(stk, &next_to_top_value);
         }
 
         int int_stack_2dup(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            int_stack_push(stk, next_to_top_value);
-            int_stack_push(stk, top_value);
-            int_stack_push(stk, next_to_top_value);
-            return int_stack_push(stk, top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            intStackPush(stk, next_to_top_value);
+            intStackPush(stk, top_value);
+            intStackPush(stk, next_to_top_value);
+            return intStackPush(stk, top_value);
         }
 
         int int_stack_2over(int_stack_t *stk) {
             if (stk->size < 4)
                 return 0;
             int top_value, next_to_top_value, third_value, fourth_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            int_stack_pop(stk, &third_value);
-            int_stack_pop(stk, &fourth_value);
-            int_stack_push(stk, fourth_value);
-            int_stack_push(stk, third_value);
-            int_stack_push(stk, next_to_top_value);
-            int_stack_push(stk, top_value);
-            int_stack_push(stk, third_value);
-            return int_stack_push(stk, fourth_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            intStackPop(stk, &third_value);
+            intStackPop(stk, &fourth_value);
+            intStackPush(stk, fourth_value);
+            intStackPush(stk, third_value);
+            intStackPush(stk, next_to_top_value);
+            intStackPush(stk, top_value);
+            intStackPush(stk, third_value);
+            return intStackPush(stk, fourth_value);
         }
 
         /* Example of how to create a binary operator that works o top two elements (if present) */
@@ -182,85 +183,85 @@ Class Stack{
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            return int_stack_push(stk, top_value + next_to_top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            return intStackPush(stk, top_value + next_to_top_value);
         }
 
         int int_stack_subtract(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            return int_stack_push(stk, next_to_top_value - top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            return intStackPush(stk, next_to_top_value - top_value);
         }
 
         int int_stack_multiply(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            return int_stack_push(stk, top_value * next_to_top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            return intStackPush(stk, top_value * next_to_top_value);
         }
 
         int int_stack_divide(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            return int_stack_push(stk, next_to_top_value / top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            return intStackPush(stk, next_to_top_value / top_value);
         }
 
         int int_stack_mod_and_quotient(int_stack_t *stk) { // /mod
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            int_stack_push(stk, next_to_top_value / top_value);
-            return int_stack_push(stk, next_to_top_value % top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            intStackPush(stk, next_to_top_value / top_value);
+            return intStackPush(stk, next_to_top_value % top_value);
         }
 
         int int_stack_mod_only(int_stack_t *stk) {
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
-            return int_stack_push(stk, next_to_top_value % top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
+            return intStackPush(stk, next_to_top_value % top_value);
         }
 
         int int_stack_greater_than(int_stack_t *stk) { //>
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value, result;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
             if (top_value >= next_to_top_value){
                 result = 0;
             }
             else {
                 result = -1;
             }
-            return int_stack_push(stk, result);
+            return intStackPush(stk, result);
         }
 
         int int_stack_less_than(int_stack_t *stk) { //<
             if (stk->size < 2)
                 return 0;
             int top_value, next_to_top_value, result;
-            int_stack_pop(stk, &top_value);
-            int_stack_pop(stk, &next_to_top_value);
+            intStackPop(stk, &top_value);
+            intStackPop(stk, &next_to_top_value);
             if (top_value <= next_to_top_value){
                 result = 0;
             }
             else {
                 result = -1;
             }
-            return int_stack_push(stk, result);
+            return intStackPush(stk, result);
         }
 
         int int_stack_function(int_stack_t *stk) {

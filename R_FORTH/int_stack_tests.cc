@@ -23,7 +23,7 @@ TEST(IntStackTests, PushToCapacityAndOverflow)
 
     // fill it
     for (int i=0; i < capacity; i++) {
-        int result = int_stack_push(&stack1, i);
+        int result = intStackPush(&stack1, i);
         ASSERT_TRUE(result);
     }
 
@@ -31,7 +31,7 @@ TEST(IntStackTests, PushToCapacityAndOverflow)
     ASSERT_EQ(int_stack_size(&stack1), capacity);
 
     // try to add one more
-    int result = int_stack_push(&stack1, capacity+1);
+    int result = intStackPush(&stack1, capacity+1);
 
     // and make sure it is an overflow (error)
     ASSERT_FALSE(result);
@@ -47,20 +47,20 @@ TEST(IntStackTests, PushToCapcacityPopUntilUnderflow)
 
     // fill it
     for (int i=0; i < capacity; i++) {
-        int result = int_stack_push(&stack1, i);
+        int result = intStackPush(&stack1, i);
         ASSERT_TRUE(result);
     }
 
     // now drain it one item at a time, ensuring each item is the value expected
     for (int i=capacity-1; i >= 0; i--) {
         int top_value;
-        int result = int_stack_pop(&stack1, &top_value);
+        int result = intStackPop(&stack1, &top_value);
         ASSERT_EQ(i, top_value);
     }
 
     // try to remove from empty stack and ensure it fails
     int top_value;
-    int result = int_stack_pop(&stack1, &top_value);
+    int result = intStackPop(&stack1, &top_value);
     ASSERT_FALSE(result);
 }
 

@@ -12,7 +12,7 @@ int main() {
 
     // Push values onto the stack.
     for (int i = 0; i < capacity; i++) {
-        int success = int_stack_push(&myStack, i);
+        int success = intStackPush(&myStack, i);
         if (!success) {
             fprintf(stderr, "Stack overflow: %d\n", i);
         }
@@ -24,7 +24,7 @@ int main() {
     // Pop values from the stack and print them.
     for (int i = 0; i < capacity; i++) {
         int top_value;
-        int success = int_stack_pop(&myStack, &top_value);
+        int success = intStackPop(&myStack, &top_value);
         if (!success) {
             fprintf(stderr, "Stack empty\n");
         }
@@ -35,8 +35,8 @@ int main() {
 
     // Quick tests for swap, dup, and add.
 
-    int_stack_push(&myStack, 7);
-    int_stack_push(&myStack, 8);
+    intStackPush(&myStack, 7);
+    intStackPush(&myStack, 8);
     int_stack_print(&myStack, stdout);
     int_stack_swap(&myStack);
     int_stack_print(&myStack, stdout);

@@ -40,7 +40,7 @@ int main(int argc, char * * argv){
 
         //Numbers
         if (type == NUMBER){
-            int_stack_push(&theStack, atoi(tok));
+            intStackPush(&theStack, atoi(tok));
         }
 
 
