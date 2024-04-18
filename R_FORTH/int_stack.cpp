@@ -33,8 +33,8 @@ Class Stack{
 
         // void int_stack_init(int_stack_t *stk, int capacity) {
         //     SLIST_INIT(&stk->head);
-        //     stk->size = 0;
-        //     stk->capacity = capacity;
+        //     size = 0;
+        //     capacity = capacity;
         // }
 
 
@@ -59,7 +59,7 @@ Class Stack{
                 int value = entry->value;
                 SLIST_REMOVE_HEAD(&stk->head, entries);
                 free(entry);
-                stk->size--;
+                size--;
                 *topValue = value;
                 return 1; // success
             }
@@ -77,7 +77,7 @@ Class Stack{
 
         /* Functions for FORTH langauge stack operators */
 
-
+        //REWRITTEN
         int intStackDup(){
             if (size < 1){ //no value to dup
                 return 0; //fail
@@ -87,7 +87,7 @@ Class Stack{
         }
 
         int intStackSwap(int_stack_t *stk) {
-            if (stk->size < 2)
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -96,6 +96,7 @@ Class Stack{
             return intStackPush(stk, nextToTopValue); // success only if last operation succeeds
         }
 
+        //REWRITTEN
         int intStackOver() {
             if (size < 2){
                 return 0; //must have 2 values to do over
@@ -108,8 +109,8 @@ Class Stack{
             return intStackPush(nextToTopValue);
         }
 
-        int int_stack_rot(int_stack_t *stk) {
-            if (stk->size < 3)
+        int intStackRot(int_stack_t *stk) {
+            if (size < 3)
                 return 0;
             int topValue, nextToTopValue, thirdValue;
             intStackPop(stk, &topValue);
@@ -120,15 +121,15 @@ Class Stack{
             return intStackPush(stk, thirdValue); // success only if last operation succeeds
         }
 
-        int int_stack_drop(int_stack_t *stk) {
-            if (stk->size < 1)
+        int intStackDrop(int_stack_t *stk) {
+            if (size < 1)
                 return 0;
             int topValue, nextToTopValue;
             return intStackPop(stk, &topValue);
         }
 
         int intStack2Swap(int_stack_t *stk) {
-            if (stk->size < 4)
+            if (size < 4)
                 return 0;
             int topValue, nextToTopValue, thirdValue, fourthValue;
             intStackPop(stk, &topValue);
@@ -142,7 +143,7 @@ Class Stack{
         }
 
         int intStack2Drop(int_stack_t *stk) {
-            if (stk->size < 2)
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -150,7 +151,7 @@ Class Stack{
         }
 
         int intStack2Dup(int_stack_t *stk) {
-            if (stk->size < 2)
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -162,7 +163,7 @@ Class Stack{
         }
 
         int intStack2Over(int_stack_t *stk) {
-            if (stk->size < 4)
+            if (size < 4)
                 return 0;
             int topValue, nextToTopValue, thirdValue, fourthValue;
             intStackPop(stk, &topValue);
@@ -180,7 +181,7 @@ Class Stack{
         /* Example of how to create a binary operator that works o top two elements (if present) */
 
         int intStackAdd(int_stack_t *stk) {
-            if (stk->size < 2)
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -189,7 +190,7 @@ Class Stack{
         }
 
         int intStackSubtract(int_stack_t *stk) {
-            if (stk->size < 2)
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -198,7 +199,7 @@ Class Stack{
         }
 
         int intStackMultiply(int_stack_t *stk) {
-            if (stk->size < 2)
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -206,8 +207,8 @@ Class Stack{
             return intStackPush(stk, topValue * nextToTopValue);
         }
 
-        int int_stack_divide(int_stack_t *stk) {
-            if (stk->size < 2)
+        int intStackDivide(int_stack_t *stk) {
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -215,8 +216,8 @@ Class Stack{
             return intStackPush(stk, nextToTopValue / topValue);
         }
 
-        int int_stack_mod_and_quotient(int_stack_t *stk) { // /mod
-            if (stk->size < 2)
+        int intStackModAndQuotient(int_stack_t *stk) { // /mod
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -225,8 +226,8 @@ Class Stack{
             return intStackPush(stk, nextToTopValue % topValue);
         }
 
-        int int_stack_mod_only(int_stack_t *stk) {
-            if (stk->size < 2)
+        int intStackModOnly(int_stack_t *stk) {
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
             intStackPop(stk, &topValue);
@@ -234,8 +235,8 @@ Class Stack{
             return intStackPush(stk, nextToTopValue % topValue);
         }
 
-        int int_stack_greater_than(int_stack_t *stk) { //>
-            if (stk->size < 2)
+        int intStackGreaterThan(int_stack_t *stk) { //>
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue, result;
             intStackPop(stk, &topValue);
@@ -249,8 +250,8 @@ Class Stack{
             return intStackPush(stk, result);
         }
 
-        int int_stack_less_than(int_stack_t *stk) { //<
-            if (stk->size < 2)
+        int intStackLessThan(int_stack_t *stk) { //<
+            if (size < 2)
                 return 0;
             int topValue, nextToTopValue, result;
             intStackPop(stk, &topValue);
@@ -268,10 +269,10 @@ Class Stack{
             
         }
 
-        void int_stack_print(int_stack_t *stk, FILE *file) {
+        void intStackPrint(int_stack_t *stk, FILE *file) {
             int_entry_t *entry;
             int pos = 0;
-            if (stk->size == 0) {
+            if (size == 0) {
                 fprintf(file, "empty stack\n");
             }
 
@@ -288,8 +289,8 @@ Class Stack{
             return size;
         }
 
-        int int_stack_capacity(int_stack_t* stk) {
-            return stk->capacity;
+        int intStackCapacity(int_stack_t* stk) {
+            return capacity;
         }
 }
 

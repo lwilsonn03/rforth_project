@@ -58,13 +58,13 @@ int main(int argc, char * * argv){
                     intStackMultiply(&theStack);
                     break;
                 case '/':
-                    int_stack_divide(&theStack);
+                    intStackDivide(&theStack);
                     break;
                 case '<':
-                    int_stack_less_than(&theStack);
+                    intStackLessThan(&theStack);
                     break;
                 case '>':
-                    int_stack_greater_than(&theStack);
+                    intStackGreaterThan(&theStack);
                     break;
                 case ';':
                     //functions unimplemented
@@ -111,7 +111,7 @@ int main(int argc, char * * argv){
             }
         }
         if(keep_accepting_input == 0){
-            int_stack_print(&theStack, stdout);
+            intStackPrint(&theStack, stdout);
         }
  
     }

@@ -10,8 +10,8 @@ TEST(IntStackTests, Initialization)
 {
     int_stack_t stack1;
     int_stack_init(&stack1, 10);
-    ASSERT_EQ(int_stack_size(&stack1), 0);
-    ASSERT_EQ(int_stack_capacity(&stack1), 10);
+    ASSERT_EQ(intStackSize(&stack1), 0);
+    ASSERT_EQ(intStackCapacity(&stack1), 10);
 }
 
 TEST(IntStackTests, PushToCapacityAndOverflow)
@@ -28,7 +28,7 @@ TEST(IntStackTests, PushToCapacityAndOverflow)
     }
 
     // ensure it's full
-    ASSERT_EQ(int_stack_size(&stack1), capacity);
+    ASSERT_EQ(intStackSize(&stack1), capacity);
 
     // try to add one more
     int result = intStackPush(&stack1, capacity+1);

@@ -24,8 +24,8 @@ extern int intStackTop(int_stack_t *stk, int *topValue);
 extern int int_stack_dup(int_stack_t *stk);
 extern int intStackSwap(int_stack_t *stk);
 extern int int_stack_over(int_stack_t *stk);
-extern int int_stack_rot(int_stack_t *stk);
-extern int int_stack_drop(int_stack_t *stk);
+extern int intStackRot(int_stack_t *stk);
+extern int intStackDrop(int_stack_t *stk);
 extern int intStack2Swap(int_stack_t *stk);
 extern int intStack2Drop(int_stack_t *stk);
 extern int intStack2Dup(int_stack_t *stk);
@@ -33,11 +33,11 @@ extern int intStack2Over(int_stack_t *stk);
 extern int intStackAdd(int_stack_t *stk);
 extern int intStackSubtract(int_stack_t *stk);
 extern int intStackMultiply(int_stack_t *stk);
-extern int int_stack_divide(int_stack_t *stk);
-extern int int_stack_mod_and_quotient(int_stack_t *stk);
-extern int int_stack_mod_only(int_stack_t *stk);
-extern void int_stack_print(int_stack_t *stk, FILE *file);
-extern int int_stack_size(int_stack_t* stk);
-extern int int_stack_capacity(int_stack_t* stk);
+extern int intStackDivide(int_stack_t *stk);
+extern int intStackModAndQuotient(int_stack_t *stk);
+extern int intStackModOnly(int_stack_t *stk);
+extern void intStackPrint(int_stack_t *stk, FILE *file);
+extern int intStackSize(int_stack_t* stk);
+extern int intStackCapacity(int_stack_t* stk);
 
 #endif // INT_STACK_H
