@@ -88,15 +88,15 @@ Class Stack{
             return intStackPush(topValue); //will return 1 if push success
         }
 
-        //TODO
-        int intStackSwap(int_stack_t *stk) {
+        //REWRITTEN
+        int intStackSwap() {
             if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
-            intStackPop(stk, &topValue);
-            intStackPop(stk, &nextToTopValue);
-            intStackPush(stk, topValue);
-            return intStackPush(stk, nextToTopValue); // success only if last operation succeeds
+            intStackPop(&topValue);
+            intStackPop(&nextToTopValue);
+            intStackPush(topValue);
+            return intStackPush(nextToTopValue); 
         }
 
         //REWRITTEN
@@ -133,19 +133,19 @@ Class Stack{
             return intStackPop(&topValue);
         }
 
-        //TODO
-        int intStack2Swap(int_stack_t *stk) {
+        //REWRITTEN
+        int intStack2Swap() {
             if (size < 4)
                 return 0;
             int topValue, nextToTopValue, thirdValue, fourthValue;
-            intStackPop(stk, &topValue);
-            intStackPop(stk, &nextToTopValue);
-            intStackPop(stk, &thirdValue);
-            intStackPop(stk, &fourthValue);
-            intStackPush(stk, thirdValue);
-            intStackPush(stk, fourthValue);
-            intStackPush(stk, topValue);
-            return intStackPush(stk, nextToTopValue); // success only if last operation succeeds
+            intStackPop(&topValue);
+            intStackPop(&nextToTopValue);
+            intStackPop(&thirdValue);
+            intStackPop(&fourthValue);
+            intStackPush(thirdValue);
+            intStackPush(fourthValue);
+            intStackPush(topValue);
+            return intStackPush(nextToTopValue); 
         }
 
         //REWRITTEN
@@ -157,17 +157,17 @@ Class Stack{
             return intStackPop(&nextToTopValue);
         }
 
-        //TODO
-        int intStack2Dup(int_stack_t *stk) {
+        //REWRITTEN
+        int intStack2Dup() {
             if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
-            intStackPop(stk, &topValue);
-            intStackPop(stk, &nextToTopValue);
-            intStackPush(stk, nextToTopValue);
-            intStackPush(stk, topValue);
-            intStackPush(stk, nextToTopValue);
-            return intStackPush(stk, topValue);
+            intStackPop(&topValue);
+            intStackPop(&nextToTopValue);
+            intStackPush(nextToTopValue);
+            intStackPush(topValue);
+            intStackPush(nextToTopValue);
+            return intStackPush(topValue);
         }
 
         //REWRITTEN
@@ -189,14 +189,14 @@ Class Stack{
 
         /* Example of how to create a binary operator that works o top two elements (if present) */
 
-        //TODO
-        int intStackAdd(int_stack_t *stk) {
+        //REWRITTEN
+        int intStackAdd() {
             if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
-            intStackPop(stk, &topValue);
-            intStackPop(stk, &nextToTopValue);
-            return intStackPush(stk, topValue + nextToTopValue);
+            intStackPop(&topValue);
+            intStackPop(&nextToTopValue);
+            return intStackPush(topValue + nextToTopValue);
         }
 
         //REWRITTEN
@@ -209,17 +209,17 @@ Class Stack{
             return intStackPush(nextToTopValue - topValue);
         }
 
-        //TODO
-        int intStackMultiply(int_stack_t *stk) {
+        //REWRITTEN
+        int intStackMultiply() {
             if (size < 2)
                 return 0;
             int topValue, nextToTopValue;
-            intStackPop(stk, &topValue);
-            intStackPop(stk, &nextToTopValue);
-            return intStackPush(stk, topValue * nextToTopValue);
+            intStackPop(&topValue);
+            intStackPop(&nextToTopValue);
+            return intStackPush(topValue * nextToTopValue);
         }
 
-        //TODO
+        //REWRITTEN
         int intStackDivide() {
             if (size < 2)
                 return 0;
