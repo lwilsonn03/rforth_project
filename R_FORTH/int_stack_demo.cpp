@@ -1,6 +1,6 @@
 // main.c
 #include "int_stack.h"
-#include <stdio.h>
+#include <iostream>
 
 
 int main() {
@@ -35,16 +35,16 @@ int main() {
 
     // Quick tests for swap, dup, and add.
 
-    intStackPush(&myStack, 7);
-    intStackPush(&myStack, 8);
-    intStackPrint(&myStack, stdout);
-    intStackSwap(&myStack);
-    intStackPrint(&myStack, stdout);
-    intStackAdd(&myStack);
-    intStackPrint(&myStack, stdout); // hopefully, 15 only item on stack!
-    int_stack_dup(&myStack);
-    intStackPrint(&myStack, stdout); // hopefully, 15 only item on stack!
-    intStackAdd(&myStack);
-    intStackPrint(&myStack, stdout); // hopefully, 30 only item on stack!
+    intStackPush(7);
+    intStackPush(8);
+    intStackPrint();
+    intStackSwap();
+    intStackPrint();
+    intStackAdd();
+    intStackPrint(); // hopefully, 15 only item on stack!
+    intStackDup();
+    intStackPrint(); // hopefully, 15 only item on stack!
+    intStackAdd();
+    intStackPrint(); // hopefully, 30 only item on stack!
     return 0;
 }
