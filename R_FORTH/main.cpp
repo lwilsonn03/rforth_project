@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
 #include "token.c"
 #include "int_stack.c"
@@ -22,7 +22,7 @@ int main(int argc, char * * argv){
     //Print tokens:
     // char* tok = strtok(user_string, delim);
     // while (tok != NULL) {
-    //     printf("%s %s\n", type_as_string(find_token_type(tok)), tok);
+    //     printf("%s %s\n", typeAsString(findTokenType(tok)), tok);
     //     tok = strtok(NULL, delim);
     // }
 
@@ -36,7 +36,7 @@ int main(int argc, char * * argv){
 
     //core input processing
     void process_one_tok(char* tok) {
-        enum token_type_t type = find_token_type(tok);
+        enum TokenTypeT type = findTokenType(tok);
 
         //Numbers
         if (type == NUMBER){

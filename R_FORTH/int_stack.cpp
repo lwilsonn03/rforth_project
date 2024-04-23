@@ -2,19 +2,6 @@
 
 #include <iostream>
 
-//possibly unecessary, just copying c structure
-Class IntEntry{
-    int value;
-    //original has "SLIST_ENTRY(int_entry) entries;"
-}
-
-
-//current main dilemma is how to manage the contents of the stack.
-//an array seems like a simple solution, until you realize you can't
-//create the array until a stack object is made, since arrays have
-//immutable size. Decided to just replace contents with new array
-//on object creation.
-
 Class Stack{
     int capacity;
     int size;
