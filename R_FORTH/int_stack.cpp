@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Class Stack{
+class Stack{
     int capacity;
     int size;
     //head- original reads "SLIST_HEAD(stackhead, int_entry) head"

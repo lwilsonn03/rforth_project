@@ -1,4 +1,15 @@
-TODO: 
+# Current TODO: 
+
+## Lee:
+- initial c++ scans:
+    - int_stack.hpp DONE
+    - main.cpp 
+    - token.cpp DONE
+    - int_stack_demo.cpp
+
+
+# Old
+
 Intermediate Deadline 1 (April 15): 
 
 Overall: functional stack with a few stack operators

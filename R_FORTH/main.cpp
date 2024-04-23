@@ -1,26 +1,17 @@
 #include <iostream>
-#include <stdlib.h>
-#include "token.c"
-#include "int_stack.c"
-#include <string.h>
-#include <regex.h>
-
-
+#include "int_stack.hpp"
 
 int main(int argc, char * * argv){
-    char *user_string = NULL;
+    char *userString = NULL;
     size_t size = 0;
-    ssize_t chars_read;
-    int keep_accepting_input = 0; //true to forth, 0 = true and -1 = false
+    ssize_t charsRead;
+    int keepAcceptingInput = 0; //true to forth, 0 = true and -1 = false
 
     char delim[] = " \t\n\r\f\v";
 
-    //setting up for storage
-    FILE *cache_txt;
-    cache_txt = fopen("cache.txt", "w");
 
     //Print tokens:
-    // char* tok = strtok(user_string, delim);
+    // char* tok = strtok(userString, delim);
     // while (tok != NULL) {
     //     printf("%s %s\n", typeAsString(findTokenType(tok)), tok);
     //     tok = strtok(NULL, delim);
@@ -32,7 +23,7 @@ int main(int argc, char * * argv){
     puts("Welcome to RForth");
 
     next_line:
-    chars_read = getline(&user_string, &size, stdin);
+    charsRead = getline(&userString, &size, stdin);
 
     //core input processing
     void process_one_tok(char* tok) {
@@ -95,14 +86,14 @@ int main(int argc, char * * argv){
     } 
 
     //core terminal handling
-    char* tok = strtok(user_string, delim);
-    while (keep_accepting_input == 0){
+    char* tok = strtok(userString, delim);
+    while (keepAcceptingInput == 0){
         if (tok == NULL){
             goto next_line; //this is my first time using goto, please
             //let me know if this use is inappropriate/better suggestions
         }
         if(strcmp(tok, "bye") == 0){
-            keep_accepting_input = -1;
+            keepAcceptingInput = -1;
         }
         else {
             while(tok != NULL){
@@ -110,17 +101,14 @@ int main(int argc, char * * argv){
                 tok = strtok(NULL, delim);
             }
         }
-        if(keep_accepting_input == 0){
+        if(keepAcceptingInput == 0){
             intStackPrint(&theStack, stdout);
         }
  
     }
 
 
-    free(user_string);
-    fclose(cache_txt);
-    remove("cache.txt");
-
+    free(userString);
     return EXIT_SUCCESS;
 
 }

@@ -1,10 +1,10 @@
-// main.c
-#include "int_stack.h"
+// int_stack_demo.cpp
+#include "int_stack.hpp"
 #include <iostream>
 
 
 int main() {
-    int_stack_t myStack;
+    Stack myStack;
     const int capacity = 5;
 
     // Initialize the stack with a capacity of 5.
