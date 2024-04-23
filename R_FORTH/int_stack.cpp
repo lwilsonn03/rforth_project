@@ -18,7 +18,7 @@ Class Stack{
             contents = arr;
         }
 
-        // void int_stack_init(int_stack_t *stk, int capacity) {
+        // void int_stack_init(, int capacity) {
         //     SLIST_INIT(&stk->head);
         //     size = 0;
         //     capacity = capacity;
@@ -41,7 +41,7 @@ Class Stack{
         }
 
         //TODO
-        int intStackPop(int_stack_t *stk, int *topValue) {
+        int intStackPop(, int *topValue) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
                 int value = entry->value;
@@ -55,7 +55,7 @@ Class Stack{
         }
 
         //TODO
-        int intStackTop(int_stack_t *stk, int *topValue) {
+        int intStackTop(, int *topValue) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
                 *topValue = entry->value;
@@ -238,7 +238,7 @@ Class Stack{
         }
 
         //TODO
-        int intStackGreaterThan(int_stack_t *stk) { //>
+        int intStackGreaterThan() { //>
             if (size < 2)
                 return 0;
             int topValue, nextToTopValue, result;
