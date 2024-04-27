@@ -41,7 +41,12 @@ class Stack{
         }
 
         //TODO
-        int intStackPop(, int *topValue) {
+        //Note: to preserve inportant functionality, please keep it
+        //so that intStackPop takes an argument that allows the
+        //value popped to be stored for later. Ex:
+        //intStackPop(&topValue) should allow the popped int to 
+        //be stored in topValue.
+        int intStackPop(int *topValue) {
             int_entry_t *entry = SLIST_FIRST(&stk->head);
             if (entry) {
                 int value = entry->value;

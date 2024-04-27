@@ -3,9 +3,9 @@
 ## Lee:
 - initial c++ scans:
     - int_stack.hpp DONE
-    - main.cpp 
+    - main.cpp DONE
     - token.cpp DONE
-    - int_stack_demo.cpp
+    - int_stack_demo.cpp DONE
 
 
 # Old

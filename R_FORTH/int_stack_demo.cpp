@@ -4,34 +4,30 @@
 
 
 int main() {
-    Stack myStack;
-    const int capacity = 5;
-
-    // Initialize the stack with a capacity of 5.
-    int_stack_init(&myStack, capacity);
+    Stack myStack(5);
 
     // Push values onto the stack.
     for (int i = 0; i < capacity; i++) {
-        int success = intStackPush(&myStack, i);
+        int success = myStack.intStackPush(i);
         if (!success) {
-            fprintf(stderr, "Stack overflow: %d\n", i);
+            cerr << "Stack overflow\n";
         }
     }
 
     // Print the stack (top to bottom)
-    intStackPrint(&myStack, stdout);
+    myStack.intStackPrint();
 
     // Pop values from the stack and print them.
     for (int i = 0; i < capacity; i++) {
         int topValue;
-        int success = intStackPop(&myStack, &topValue);
+        int success = intStackPop(&topValue);
         if (!success) {
-            fprintf(stderr, "Stack empty\n");
+            cerr << "Stack empty\n";
         }
     }
 
     //Print the stack (top to bottom)
-    intStackPrint(&myStack, stdout);
+    intStackPrint();
 
     // Quick tests for swap, dup, and add.
 
