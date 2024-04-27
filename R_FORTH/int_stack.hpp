@@ -33,7 +33,7 @@ class Stack{
         int intStackDivide();
         int intStackModAndQuotient();
         int intStackModOnly();
-        void intStackPrint(FILE *file);
+        void intStackPrint();
         int intStackSize();
         int intStackCapacity();
 

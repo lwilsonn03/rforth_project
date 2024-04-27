@@ -1,21 +1,22 @@
 // int_stack.cpp
 
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 class Stack{
     int capacity;
     int size;
     //head- original reads "SLIST_HEAD(stackhead, int_entry) head"
-    int contents[1];
+    int *contents[];
 
     public:  
-
-
         Stack(int c){
             capacity = c;
             size = 0;
             int arr[c];
-            contents = arr;
+            *contents = arr;
         }
 
         // void int_stack_init(, int capacity) {
@@ -35,7 +36,7 @@ class Stack{
                 cout << "Stack is at full capacity.\n";
                 return 0; //fail
             }
-            arr[size - 1] = v;
+            *contents[size - 1] = v;
             size++;
             return 1; //success
         }
@@ -46,27 +47,19 @@ class Stack{
         //value popped to be stored for later. Ex:
         //intStackPop(&topValue) should allow the popped int to 
         //be stored in topValue.
-        int intStackPop(int *topValue) {
-            int_entry_t *entry = SLIST_FIRST(&stk->head);
-            if (entry) {
-                int value = entry->value;
-                SLIST_REMOVE_HEAD(&stk->head, entries);
-                free(entry);
-                size--;
-                *topValue = value;
-                return 1; // success
-            }
-            return 0; // fail
+        int intStackPop(int *topValue = 0) {
+            int valueOnTop = *contents[size - 1];
+            *topValue = valueOnTop;
+            *contents[size - 1] = 0;
+            size--;
+            return 1;
         }
 
         //TODO
-        int intStackTop(, int *topValue) {
-            int_entry_t *entry = SLIST_FIRST(&stk->head);
-            if (entry) {
-                *topValue = entry->value;
-                return 1; // success
-            }
-            return 0; // fail
+        int intStackTop(int *topValue = 0) {
+            int valueOnTop = *contents[size - 1];
+            *topValue = valueOnTop;
+            return 1;
         }
 
         /* Functions for FORTH langauge stack operators */
@@ -76,7 +69,8 @@ class Stack{
             if (size < 1){ //no value to dup
                 return 0; //fail
             }
-            int topValue = intStackTop(); //subject to change, assumes intStackTop needs no arguments
+            int topValue;
+            intStackTop(&topValue); //subject to change, assumes intStackTop needs no arguments
             return intStackPush(topValue); //will return 1 if push success
         }
 
@@ -247,15 +241,15 @@ class Stack{
             if (size < 2)
                 return 0;
             int topValue, nextToTopValue, result;
-            intStackPop(stk, &topValue);
-            intStackPop(stk, &nextToTopValue);
+            intStackPop(&topValue);
+            intStackPop(&nextToTopValue);
             if (topValue >= nextToTopValue){
                 result = 0;
             }
             else {
                 result = -1;
             }
-            return intStackPush(stk, result);
+            return intStackPush(result);
         }
 
         //REWRITTEN
@@ -276,17 +270,11 @@ class Stack{
 
         //TODO
         void intStackPrint() {
-            int_entry_t *entry;
-            int pos = 0;
-            if (size == 0) {
-                fprintf(file, "empty stack\n");
+            string printString = "i:  v: \n";
+            for (int i = 0; i < size; i++){
+                
             }
-
-            SLIST_FOREACH(entry, &stk->head, entries) {
-                fprintf(file, "%d: %d\n", pos, entry->value);
-                pos++;
-            }
-            printf("\n");
+            cout << printString;
         }
 
 
@@ -298,5 +286,5 @@ class Stack{
         int intStackCapacity() {
             return capacity;
         }
-}
+};
 
