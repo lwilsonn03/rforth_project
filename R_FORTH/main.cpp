@@ -1,8 +1,11 @@
 #include <iostream>
+#include <string>
 #include "int_stack.hpp"
 
+using namespace std;
+
 int main(int argc, char * * argv){
-    char *userString = NULL;
+    string userString;
     int size = 0;
     int charsRead;
     int keepAcceptingInput = 0; //true to forth, 0 = true and -1 = false
@@ -25,14 +28,13 @@ int main(int argc, char * * argv){
     cin >> userString;
 
     //core input processing
-    void processOneTok(char* tok) {
+    void processOneTok(string tok){
         enum TokenTypeT type = findTokenType(tok);
 
         //Numbers
         if (type == NUMBER){
-            theStack.intStackPush(atoi(tok));
+            theStack.intStackPush(to_string(tok));
         }
-
 
         //Operators
         else if (type == OPERATOR){
@@ -82,16 +84,16 @@ int main(int argc, char * * argv){
     } 
 
     //core terminal handling
-    char* tok = strtok(userString, delim);
+    string tok = strtok(userString, delim);
     while (keepAcceptingInput == 0){
-        if (tok == NULL){
+        if (true){ //MUST FIX
             goto nextLine;
         }
-        if(strcmp(tok, "bye") == 0){
+        if(tok.compare("bye") == 0){
             keepAcceptingInput = -1;
         }
         else {
-            while(tok != NULL){
+            while(true){ //MUST FIX THIS LINE
                 processOneTok(tok);
                 tok = strtok(NULL, delim);
             }
@@ -102,8 +104,6 @@ int main(int argc, char * * argv){
  
     }
 
-
-    free(userString);
     return EXIT_SUCCESS;
 
 }

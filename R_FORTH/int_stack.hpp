@@ -15,6 +15,7 @@ class Stack{
         int size;
         int contents[];
     public:
+        Stack();
         int intStackPush(int value);
         int intStackPop(int *topValue);
         int intStackTop(int *topValue);
