@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include "int_stack.hpp"
 
 using namespace std;
 

@@ -6,6 +6,9 @@
 
 #include <iostream>
 #include <queue>
+#include <string>
+
+using namespace std;
 
 enum TokenTypeT{NUMBER = 0, OPERATOR = 1, SYMBOL = 2, WORD = 3};
 
@@ -13,15 +16,15 @@ class Stack{
     protected:
         int capacity;
         int size;
-        int contents[];
+        int *contents[];
     public:
-        Stack();
+        Stack(int c);
         int intStackPush(int value);
         int intStackPop(int *topValue);
         int intStackTop(int *topValue);
-        int int_stack_dup();
+        int intStackDup();
         int intStackSwap();
-        int int_stack_over();
+        int intStackOver();
         int intStackRot();
         int intStackDrop();
         int intStack2Swap();
@@ -34,10 +37,13 @@ class Stack{
         int intStackDivide();
         int intStackModAndQuotient();
         int intStackModOnly();
+        int intStackGreaterThan();
+        int intStackLessThan();
         void intStackPrint();
         int intStackSize();
         int intStackCapacity();
-
 };
+
+enum TokenTypeT findTokenType(string s);
 
 #endif // INT_STACK_H
