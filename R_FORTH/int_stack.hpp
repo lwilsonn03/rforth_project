@@ -37,6 +37,6 @@ class Stack{
         int intStackSize();
         int intStackCapacity();
 
-}
+};
 
 #endif // INT_STACK_H

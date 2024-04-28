@@ -1,6 +1,7 @@
 //Initial scan for cpp formatting complete
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -9,22 +10,26 @@ using namespace std;
 
 enum TokenTypeT{NUMBER = 0, OPERATOR = 1, SYMBOL = 2, WORD = 3};
 
-Class Token{
+class Token{
     enum TokenTypeT tType;
-    char *content;
-}
+    string content;
+
+    public:
+        enum TokenTypeT getType(){return tType;}
+        string getContent(){return content;}
+};
 
 
-int isOperator(char *s){
+int isOperator(string s){
     //assumes isn't num
     char opList[] = "+-/*<>;:";
     int listSize, strSize;
-    listSize = sizeof(op_list)/sizeof(op_list[0]);
-    strSize = strlen(s);
+    listSize = sizeof(opList)/sizeof(opList[0]);
+    strSize = s.length();
 
     if (strSize == 1){
         for (int i = 0; i < listSize; i++){
-            if (op_list[i] == s[0]){
+            if (opList[i] == s[0]){
                 return 1;
             }
         }
@@ -32,13 +37,13 @@ int isOperator(char *s){
     return 0;
 }
 
-int isSymbol(char *s){
+int isSymbol(string s){
     //assumes isn't num or operator
     //was having trouble with regex, so I just wrote out the alphabet
     char alphaList[] = "abcdefghijklmnopqrstuvqwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
     int alphaListSize, stringSize;
     alphaListSize = sizeof(alphaList)/sizeof(alphaList[0]);
-    stringSize = strlen(s);
+    stringSize = s.length();
     if (stringSize == 1){
         for (int i = 0; i < alphaListSize; i++){
             if (s[0] == alphaList[i]){
@@ -52,11 +57,10 @@ int isSymbol(char *s){
     return 0;
 }
 
-enum TokenTypeT findTokenType(char *s){
+enum TokenTypeT findTokenType(string s){
     enum TokenTypeT type;
-    int size = strlen(s);
-    char copy[size];
-    strcpy(copy, s);
+    int size = s.length();
+    string copy = s;
 
     for (int i = 0; i < size; i++){
         if (!isdigit(copy[i])){ //if any character isn't a digit, can't be number
@@ -66,9 +70,9 @@ enum TokenTypeT findTokenType(char *s){
         }
     }
     
-    if (is_operator(copy)){
+    if (isOperator(copy)){
         return TokenTypeT::OPERATOR;
-    } else if (is_symbol(copy)){
+    } else if (isSymbol(copy)){
         return TokenTypeT::SYMBOL;
     }
 
@@ -76,7 +80,7 @@ enum TokenTypeT findTokenType(char *s){
 }
 
 
-char * typeAsString(enum TokenTypeT type){
+string typeAsString(enum TokenTypeT type){
     switch(type){
         case 0: 
             return "Number";
@@ -91,14 +95,15 @@ char * typeAsString(enum TokenTypeT type){
             return "Word";
             break;
     }
+    return "error";
 }
 
-void printlnToken(struct token_t token){
-    cout << ("%s %s\n",typeAsString(token.t_class), token.content);
+void printlnToken(Token token){
+    cout << (typeAsString(token.getType()) + token.getContent());
 }
 
-void printToken(struct token_t token){
-    cout << ("%s %s",typeAsString(token.t_class), token.content);
+void printToken(Token token){
+    cout << (typeAsString(token.getType()) + token.getContent());
 }
 
 #endif

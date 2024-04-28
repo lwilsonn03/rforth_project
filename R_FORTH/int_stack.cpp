@@ -272,7 +272,8 @@ class Stack{
         void intStackPrint() {
             string printString = "i:  v: \n";
             for (int i = 0; i < size; i++){
-                
+                string appendMe = to_string(i) + " | " + to_string(*contents[i]);
+                printString += appendMe;
             }
             cout << printString;
         }
