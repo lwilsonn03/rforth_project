@@ -1,1 +1,0 @@
-/usr/bin/cc -g CMakeFiles/int_stack_demo.dir/int_stack_demo.c.o CMakeFiles/int_stack_demo.dir/int_stack.c.o -o ../bin/int_stack_demo 

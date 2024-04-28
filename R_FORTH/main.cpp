@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
+#include <string.h>
 #include "int_stack.hpp"
 
 using namespace std;
 
+Stack theStack(10);
 
 void processOneTok(string tok){
     enum TokenTypeT type = findTokenType(tok);
@@ -69,8 +71,6 @@ int main(int argc, char * * argv){
 
     char delim[] = " \t\n\r\f\v";
 
-    Stack theStack(10);
-
     cout << "Welcome to RForth\n";
 
     /* 
@@ -82,6 +82,8 @@ int main(int argc, char * * argv){
 
     while (keepAcceptingInput == 0){
         cin >> userString;
+        char* arrayString[] = 
+
         char* tok = strtok(userString, delim);
         if (tok == NULL){ //MUST FIX
             
