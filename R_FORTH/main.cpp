@@ -79,9 +79,12 @@ int main(int argc, char * * argv){
     // charsRead = userString.length(); //potentially unecessary to convert userString to char[] but might be needed for strtok()
     // char userArray[charsRead + 1];
     // strcpy(userArray, userString.c_str());
+    int *temp; 
 
     cout << theStack.intStackPush(1) << endl;
     cout << "reached here" << endl;
+    cout << theStack.intStackTop(temp) << endl;
+    cout << temp << endl;
     theStack.intStackPrint();
 
 
