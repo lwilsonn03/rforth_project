@@ -9,7 +9,6 @@ using namespace std;
 #ifndef TOKEN_H_
 #define TOKEN_H_
 
-enum TokenTypeT{NUMBER = 0, OPERATOR = 1, SYMBOL = 2, WORD = 3};
 
 class Token{
     enum TokenTypeT tType;

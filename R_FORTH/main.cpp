@@ -79,11 +79,10 @@ int main(int argc, char * * argv){
         in more detail to get it to work in c++.
         please hold
     */
-        //core terminal handling
+    //core terminal handling
 
     while (exitProgramNow == -1){
         cin >> userString;
-
 
         while (keepAcceptingInput == 0){
             char* tok = strtok(userString, delim);
