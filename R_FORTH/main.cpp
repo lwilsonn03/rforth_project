@@ -7,7 +7,7 @@ using namespace std;
 
 Stack theStack(10);
 
-void processOneTok(string tok){
+void processOneTok(char* tok){
     enum TokenTypeT type = findTokenType(tok);
 
     //Numbers
@@ -64,10 +64,11 @@ void processOneTok(string tok){
 
 
 int main(int argc, char * * argv){
-    string userString;
+    char* userString;
     int size = 0;
     int charsRead;
     int keepAcceptingInput = 0; //true to forth, 0 = true and -1 = false
+    int exitProgramNow = -1;
 
     char delim[] = " \t\n\r\f\v";
 
@@ -80,27 +81,32 @@ int main(int argc, char * * argv){
     */
         //core terminal handling
 
-    while (keepAcceptingInput == 0){
+    while (exitProgramNow == -1){
         cin >> userString;
-        char* arrayString[] = 
 
-        char* tok = strtok(userString, delim);
-        if (tok == NULL){ //MUST FIX
-            
-        }
-        if(tok.compare("bye") == 0){
-            keepAcceptingInput = -1;
-        }
-        else {
-            while(tok != NULL){ //MUST FIX THIS LINE
-                processOneTok(tok);
-                tok = strtok(NULL, delim);
+
+        while (keepAcceptingInput == 0){
+            char* tok = strtok(userString, delim);
+            string tokString(tok);
+            if (tok == NULL){
+                continue;
             }
-        }
-        if(keepAcceptingInput == 0){
-            theStack.intStackPrint();
-        }
+            if(tokString.compare("bye") == 0){
+                keepAcceptingInput = -1;
+                exitProgramNow = 0;
+            }
+            else {
+                while(tok != NULL){
+                    processOneTok(tok);
+                    tok = strtok(NULL, delim);
+                }
+            }
+            if(keepAcceptingInput == 0){
+                theStack.intStackPrint();
+            }
 
+        }
     }
+
     return EXIT_SUCCESS;
 }
