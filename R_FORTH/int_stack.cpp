@@ -35,23 +35,18 @@ int Stack::intStackPush(int v){
     size++;
     return 1; //success
 }
-//Note: to preserve inportant functionality, please keep it
-//so that intStackPop takes an argument that allows the
-//value popped to be stored for later. Ex:
-//intStackPop(&topValue) should allow the popped int to 
-//be stored in topValue.
 
-//REWRITTEN
+
 int Stack::intStackPop(int *topValue) {
     if (size <= 0) {
         cout << "Stack is empty.\n";
         return 0; // fail
     }
-    topValue = contents[--size];
+    *topValue = contents[--size];
     return 1; // success
 }
 
-//REWRITTEN
+
 int Stack::intStackTop(int *topValue) {
     if (size <= 0) {
         cout << "Stack is empty.\n";
@@ -63,7 +58,7 @@ int Stack::intStackTop(int *topValue) {
 
 /* Functions for FORTH langauge stack operators */
 
-//REWRITTEN
+
 int Stack::intStackDup(){
     if (size < 1){ //no value to dup
         return 0; //fail
@@ -73,7 +68,7 @@ int Stack::intStackDup(){
     return intStackPush(topValue); //will return 1 if push success
 }
 
-//REWRITTEN
+
 int Stack::intStackSwap() {
     if (size < 2)
         return 0;
@@ -84,20 +79,20 @@ int Stack::intStackSwap() {
     return intStackPush(nextToTopValue); 
 }
 
-//REWRITTEN
+
 int Stack::intStackOver() {
     if (size < 2){
         return 0; //must have 2 values to do over
     }
     int topValue, nextToTopValue;
-    intStackPop(&topValue); //TODO: once pop is rewritten, ensure this works
+    intStackPop(&topValue);
     intStackPop(&nextToTopValue);
     intStackPush(nextToTopValue);
     intStackPush(topValue);
     return intStackPush(nextToTopValue);
 }
 
-//REWRITTEN
+
 int Stack::intStackRot() {
     if (size < 3)
         return 0;
@@ -110,7 +105,7 @@ int Stack::intStackRot() {
     return intStackPush(thirdValue);
 }
 
-//REWRITTEN
+
 int Stack::intStackDrop() {
     if (size < 1)
         return 0;
@@ -118,7 +113,7 @@ int Stack::intStackDrop() {
     return intStackPop(&topValue);
 }
 
-//REWRITTEN
+
 int Stack::intStack2Swap() {
     if (size < 4)
         return 0;
@@ -133,7 +128,7 @@ int Stack::intStack2Swap() {
     return intStackPush(nextToTopValue); 
 }
 
-//REWRITTEN
+
 int Stack::intStack2Drop() {
     if (size < 2)
         return 0;
@@ -142,7 +137,7 @@ int Stack::intStack2Drop() {
     return intStackPop(&nextToTopValue);
 }
 
-//REWRITTEN
+
 int Stack::intStack2Dup() {
     if (size < 2)
         return 0;
@@ -155,7 +150,7 @@ int Stack::intStack2Dup() {
     return intStackPush(topValue);
 }
 
-//REWRITTEN
+
 int Stack::intStack2Over() {
     if (size < 4)
         return 0;
@@ -174,7 +169,7 @@ int Stack::intStack2Over() {
 
 /* Example of how to create a binary operator that works o top two elements (if present) */
 
-//REWRITTEN
+
 int Stack::intStackAdd() {
     if (size < 2)
         return 0;
@@ -184,7 +179,7 @@ int Stack::intStackAdd() {
     return intStackPush(topValue + nextToTopValue);
 }
 
-//REWRITTEN
+
 int Stack::intStackSubtract() {
     if (size < 2)
         return 0;
@@ -194,7 +189,7 @@ int Stack::intStackSubtract() {
     return intStackPush(nextToTopValue - topValue);
 }
 
-//REWRITTEN
+
 int Stack::intStackMultiply() {
     if (size < 2)
         return 0;
@@ -204,7 +199,7 @@ int Stack::intStackMultiply() {
     return intStackPush(topValue * nextToTopValue);
 }
 
-//REWRITTEN
+
 int Stack::intStackDivide() {
     if (size < 2)
         return 0;
@@ -214,7 +209,7 @@ int Stack::intStackDivide() {
     return intStackPush(nextToTopValue / topValue);
 }
 
-//REWRITTEN
+
 int Stack::intStackModAndQuotient() { // /mod
     if (size < 2)
         return 0;
@@ -225,7 +220,7 @@ int Stack::intStackModAndQuotient() { // /mod
     return intStackPush(nextToTopValue % topValue);
 }
 
-//REWRITTEN
+
 int Stack::intStackModOnly() {
     if (size < 2)
         return 0;
@@ -235,7 +230,7 @@ int Stack::intStackModOnly() {
     return intStackPush(nextToTopValue % topValue);
 }
 
-//TODO
+
 int Stack::intStackGreaterThan() { //>
     if (size < 2)
         return 0;
@@ -251,7 +246,7 @@ int Stack::intStackGreaterThan() { //>
     return intStackPush(result);
 }
 
-//REWRITTEN
+
 int Stack::intStackLessThan() { //<
     if (size < 2)
         return 0;
@@ -267,7 +262,7 @@ int Stack::intStackLessThan() { //<
     return intStackPush(result);
 }
 
-//REWRITTEN 
+ 
 void Stack::intStackPrint() {
     cout << "Stack:";
     for (int i = size - 1; i >= 0; --i) {
@@ -275,11 +270,11 @@ void Stack::intStackPrint() {
     }
     cout << endl;
 }
-//REWRITTEN
+
 int Stack::intStackSize() {
     return size;
 }
-//REWRITTEN
+
 int Stack::intStackCapacity() {
     return capacity;
 }
