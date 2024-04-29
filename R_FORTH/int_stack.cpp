@@ -42,12 +42,21 @@ int Stack::intStackPush(int v){
 //value popped to be stored for later. Ex:
 //intStackPop(&topValue) should allow the popped int to 
 //be stored in topValue.
-int Stack::intStackPop(int *topValue = 0) {
-    int valueOnTop = *contents[size - 1];
-    *topValue = valueOnTop;
-    *contents[size - 1] = 0;
-    size--;
-    return 1;
+//int Stack::intStackPop(int *topValue = 0) {
+   // int valueOnTop = *contents[size - 1];
+   // *topValue = valueOnTop;
+    //*contents[size - 1] = 0;
+  //  size--;
+    //return 1;
+
+//Rewritten by Emilie
+int Stack::intStackPop(int *topValue) {
+    if (size <= 0) {
+        cout << "Stack is empty.\n";
+        return 0; // fail
+    }
+    *topValue = contents[--size];
+    return 1; // success
 }
 
 //TODO
