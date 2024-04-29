@@ -6,6 +6,10 @@
     - main.cpp DONE
     - token.cpp DONE
     - int_stack_demo.cpp DONE
+## Emilie
+- int_stack.cpp
+    - pop, top, print DONE
+    - int_stack.hpp DONE
 
 
 # Old
