@@ -16,7 +16,7 @@ class Stack{
     protected:
         int capacity;
         int size;
-        int *contents[]; //should we get rid of the '[]' so it matches the declaration in int_stack.cpp?
+        int *contents; 
     public:
         Stack(int c);
         int intStackPush(int value);

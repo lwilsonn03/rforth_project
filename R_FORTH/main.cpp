@@ -73,14 +73,14 @@ int main(int argc, char * * argv){
     char delim[] = " \t\n\r\f\v";
 
     cout << "Welcome to RForth" << endl;
-    getline(cin, userString);
+    // getline(cin, userString);
 
 
-    charsRead = userString.length(); //potentially unecessary to convert userString to char[] but might be needed for strtok()
-    char userArray[charsRead + 1];
-    strcpy(userArray, userString.c_str());
+    // charsRead = userString.length(); //potentially unecessary to convert userString to char[] but might be needed for strtok()
+    // char userArray[charsRead + 1];
+    // strcpy(userArray, userString.c_str());
 
-    theStack.intStackPush(1);
+    cout << theStack.intStackPush(1) << endl;
     cout << "reached here" << endl;
     theStack.intStackPrint();
 

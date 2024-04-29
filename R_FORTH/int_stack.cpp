@@ -11,7 +11,7 @@ Stack::Stack(int c){
     capacity = c;
     size = 0;
     int arr[c];
-    *contents = arr;
+    contents = arr;
 }
 
 // void int_stack_init(, int capacity) {
@@ -31,7 +31,7 @@ int Stack::intStackPush(int v){
         cout << "Stack is at full capacity.\n";
         return 0; //fail
     }
-    *contents[size - 1] = v;
+    contents[size - 1] = v;
     size++;
     return 1; //success
 }
@@ -52,7 +52,7 @@ int Stack::intStackTop(int *topValue) {
         cout << "Stack is empty.\n";
         return 0;
     }
-    topValue = contents[size - 1];
+    *topValue = contents[size - 1];
     return 1; 
 }
 
