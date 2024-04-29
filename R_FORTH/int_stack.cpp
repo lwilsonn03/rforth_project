@@ -47,7 +47,7 @@ int Stack::intStackPop(int *topValue) {
         cout << "Stack is empty.\n";
         return 0; // fail
     }
-    *topValue = contents[--size];
+    topValue = contents[--size];
     return 1; // success
 }
 
@@ -57,7 +57,7 @@ int Stack::intStackTop(int *topValue) {
         cout << "Stack is empty.\n";
         return 0;
     }
-    *topValue = contents[size - 1];
+    topValue = contents[size - 1];
     return 1; 
 }
 

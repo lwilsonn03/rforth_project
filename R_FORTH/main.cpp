@@ -64,15 +64,27 @@ void processOneTok(char* tok){
 
 
 int main(int argc, char * * argv){
-    char* userString;
+    string userString;
     int size = 0;
     int charsRead;
-    int keepAcceptingInput = 0; //true to forth, 0 = true and -1 = false
-    int exitProgramNow = -1;
+    bool keepAcceptingInput = true;
+    bool exitProgramNow = false;
 
     char delim[] = " \t\n\r\f\v";
 
-    cout << "Welcome to RForth\n";
+    cout << "Welcome to RForth" << endl;
+    getline(cin, userString);
+
+
+    charsRead = userString.length(); //potentially unecessary to convert userString to char[] but might be needed for strtok()
+    char userArray[charsRead + 1];
+    strcpy(userArray, userString.c_str());
+    cout << "reached here" << endl;
+
+    theStack.intStackPush(1);
+    cout << "reached here" << endl;
+    theStack.intStackPrint();
+
 
     /* 
         I think I will need to rewrite this section
@@ -81,31 +93,31 @@ int main(int argc, char * * argv){
     */
     //core terminal handling
 
-    while (exitProgramNow == -1){
-        cin >> userString;
+    // while (!exitProgramNow){
+    //     cin >> userString;
 
-        while (keepAcceptingInput == 0){
-            char* tok = strtok(userString, delim);
-            string tokString(tok);
-            if (tok == NULL){
-                continue;
-            }
-            if(tokString.compare("bye") == 0){
-                keepAcceptingInput = -1;
-                exitProgramNow = 0;
-            }
-            else {
-                while(tok != NULL){
-                    processOneTok(tok);
-                    tok = strtok(NULL, delim);
-                }
-            }
-            if(keepAcceptingInput == 0){
-                theStack.intStackPrint();
-            }
+    //     while (keepAcceptingInput){
+    //         char* tok = strtok(userString, delim);
+    //         string tokString(tok);
+    //         if (tok == NULL){
+    //             continue;
+    //         }
+    //         if(tokString.compare("bye") == 0){
+    //             keepAcceptingInput = false;
+    //             exitProgramNow = true;
+    //         }
+    //         else {
+    //             while(tok != NULL){
+    //                 processOneTok(tok);
+    //                 tok = strtok(NULL, delim);
+    //             }
+    //         }
+    //         if(keepAcceptingInput){
+    //             theStack.intStackPrint();
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
-    return EXIT_SUCCESS;
+    return 0;
 }
