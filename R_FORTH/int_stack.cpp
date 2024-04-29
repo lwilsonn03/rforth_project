@@ -28,11 +28,10 @@ Stack::Stack(int c){
 //currently arr[0] = first stack item 
 int Stack::intStackPush(int v){
     if (size >= capacity){ 
-        cout << "Stack is at full capacity.\n";
+        cout << "Stack is at full capacity." << endl;
         return 0; //fail
     }
-    contents[size - 1] = v;
-    size++;
+    contents[size++] = v;
     return 1; //success
 }
 
@@ -49,7 +48,7 @@ int Stack::intStackPop(int *topValue) {
 
 int Stack::intStackTop(int *topValue) {
     if (size <= 0) {
-        cout << "Stack is empty.\n";
+        cout << "Stack is empty." << endl;
         return 0;
     }
     *topValue = contents[size - 1];

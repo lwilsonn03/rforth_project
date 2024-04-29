@@ -79,11 +79,12 @@ int main(int argc, char * * argv){
     // charsRead = userString.length(); //potentially unecessary to convert userString to char[] but might be needed for strtok()
     // char userArray[charsRead + 1];
     // strcpy(userArray, userString.c_str());
-    int *temp; 
 
-    cout << theStack.intStackPush(1) << endl;
-    cout << "reached here" << endl;
-    cout << theStack.intStackTop(temp) << endl;
+    //I want this to push 2 and 3, print the top value, then print the whole stack.
+    int temp; 
+    theStack.intStackPush(2);
+    theStack.intStackPush(3);
+    theStack.intStackTop(&temp);
     cout << temp << endl;
     theStack.intStackPrint();
 
