@@ -59,11 +59,20 @@ int Stack::intStackPop(int *topValue) {
     return 1; // success
 }
 
-//TODO
-int Stack::intStackTop(int *topValue = 0) {
-    int valueOnTop = *contents[size - 1];
-    *topValue = valueOnTop;
-    return 1;
+
+//int Stack::intStackTop(int *topValue = 0) {
+    //int valueOnTop = *contents[size - 1];
+    //*topValue = valueOnTop;
+    //return 1;
+
+//Rewritten by Emilie 
+int Stack::intStackTop(int *topValue) {
+    if (size <= 0) {
+        cout << "Stack is empty.\n";
+        return 0;
+    }
+    *topValue = contents[size - 1];
+    return 1; 
 }
 
 /* Functions for FORTH langauge stack operators */
