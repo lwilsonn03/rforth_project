@@ -7,6 +7,7 @@
 #include <iostream>
 #include <queue>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class Stack{
     protected:
         int capacity;
         int size;
-        int *contents; 
+        vector<int> contents;
     public:
         Stack(int c);
         int intStackPush(int value);

@@ -1,6 +1,7 @@
 // int_stack_demo.cpp
 #include "int_stack.hpp"
 #include <iostream>
+#include <vector>
 
 
 int main() {

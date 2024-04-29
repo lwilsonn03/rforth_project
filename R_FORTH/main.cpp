@@ -1,66 +1,67 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <vector>
 #include "int_stack.hpp"
 
 using namespace std;
 
 Stack theStack(10);
 
-void processOneTok(char* tok){
-    enum TokenTypeT type = findTokenType(tok);
+// void processOneTok(char* tok){
+//     enum TokenTypeT type = findTokenType(tok);
 
-    //Numbers
-    if (type == NUMBER){
-        theStack.intStackPush(stoi(tok));
-    }
+//     //Numbers
+//     if (type == NUMBER){
+//         theStack.intStackPush(stoi(tok));
+//     }
 
-    //Operators
-    else if (type == OPERATOR){
-        *tok = (char)(*tok);
-        switch(*tok){
-            case '+':
-                theStack.intStackAdd();
-                break;
-            case '-':
-                theStack.intStackSubtract();
-                break;
-            case '*':
-                theStack.intStackMultiply();
-                break;
-            case '/':
-                theStack.intStackDivide();
-                break;
-            case '<':
-                theStack.intStackLessThan();
-                break;
-            case '>':
-                theStack.intStackGreaterThan();
-                break;
-            case ';':
-                //functions unimplemented
-                break;
-            case ':':
-                //functions unimplemented
-                break;
-            default: 
-                cout << "Unrecognized operator\n";
-        }
-    }
-    //Words
-    else if (type == WORD){
-        if (strcmp(tok, "/mod") == 0){
-            theStack.intStackModAndQuotient();
-        }
-        else if (strcmp(tok, "mod") == 0){
-            theStack.intStackModOnly();
-        }
-    }
-    //Unrecognized
-    else {
-        printf("Error: unrecognized symbol\n");
-    }
-} 
+//     //Operators
+//     else if (type == OPERATOR){
+//         *tok = (char)(*tok);
+//         switch(*tok){
+//             case '+':
+//                 theStack.intStackAdd();
+//                 break;
+//             case '-':
+//                 theStack.intStackSubtract();
+//                 break;
+//             case '*':
+//                 theStack.intStackMultiply();
+//                 break;
+//             case '/':
+//                 theStack.intStackDivide();
+//                 break;
+//             case '<':
+//                 theStack.intStackLessThan();
+//                 break;
+//             case '>':
+//                 theStack.intStackGreaterThan();
+//                 break;
+//             case ';':
+//                 //functions unimplemented
+//                 break;
+//             case ':':
+//                 //functions unimplemented
+//                 break;
+//             default: 
+//                 cout << "Unrecognized operator\n";
+//         }
+//     }
+//     //Words
+//     else if (type == WORD){
+//         if (strcmp(tok, "/mod") == 0){
+//             theStack.intStackModAndQuotient();
+//         }
+//         else if (strcmp(tok, "mod") == 0){
+//             theStack.intStackModOnly();
+//         }
+//     }
+//     //Unrecognized
+//     else {
+//         printf("Error: unrecognized symbol\n");
+//     }
+// } 
 
 
 int main(int argc, char * * argv){
@@ -84,8 +85,9 @@ int main(int argc, char * * argv){
     int temp; 
     theStack.intStackPush(2);
     theStack.intStackPush(3);
-    theStack.intStackTop(&temp);
-    cout << temp << endl;
+    theStack.intStackPush(4);
+    // theStack.intStackTop(&temp);
+    // cout << temp << endl;
     theStack.intStackPrint();
 
 

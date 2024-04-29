@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "int_stack.hpp"
 
 using namespace std;
@@ -10,16 +11,7 @@ using namespace std;
 Stack::Stack(int c){
     capacity = c;
     size = 0;
-    int arr[c];
-    contents = arr;
 }
-
-// void int_stack_init(, int capacity) {
-//     SLIST_INIT(&stk->head);
-//     size = 0;
-//     capacity = capacity;
-// }
-
 
 
 /* ---CURRENT STORAGE METHOD--- */
@@ -31,7 +23,8 @@ int Stack::intStackPush(int v){
         cout << "Stack is at full capacity." << endl;
         return 0; //fail
     }
-    contents[size++] = v;
+    contents.push_back(v);
+    size++;
     return 1; //success
 }
 
@@ -265,7 +258,8 @@ int Stack::intStackLessThan() { //<
 void Stack::intStackPrint() {
     cout << "Stack:";
     for (int i = size - 1; i >= 0; --i) {
-        cout << " " << contents[i];
+        int v = contents[i];
+        cout << " " << v;
     }
     cout << endl;
 }
