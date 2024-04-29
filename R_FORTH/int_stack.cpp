@@ -40,14 +40,8 @@ int Stack::intStackPush(int v){
 //value popped to be stored for later. Ex:
 //intStackPop(&topValue) should allow the popped int to 
 //be stored in topValue.
-//int Stack::intStackPop(int *topValue = 0) {
-   // int valueOnTop = *contents[size - 1];
-   // *topValue = valueOnTop;
-    //*contents[size - 1] = 0;
-  //  size--;
-    //return 1;
 
-//Rewritten by Emilie
+//REWRITTEN
 int Stack::intStackPop(int *topValue) {
     if (size <= 0) {
         cout << "Stack is empty.\n";
@@ -57,13 +51,7 @@ int Stack::intStackPop(int *topValue) {
     return 1; // success
 }
 
-
-//int Stack::intStackTop(int *topValue = 0) {
-    //int valueOnTop = *contents[size - 1];
-    //*topValue = valueOnTop;
-    //return 1;
-
-//Rewritten by Emilie 
+//REWRITTEN
 int Stack::intStackTop(int *topValue) {
     if (size <= 0) {
         cout << "Stack is empty.\n";
@@ -279,16 +267,7 @@ int Stack::intStackLessThan() { //<
     return intStackPush(result);
 }
 
-//TODO
-//void Stack::intStackPrint() {
-    //string printString = "i:  v: \n";
-    //for (int i = 0; i < size; i++){
-        //string appendMe = to_string(i) + " | " + to_string(*contents[i]);
-        //printString += appendMe;
-
-    //cout << printString;
-
-//REWRITTEN by Emilie 
+//REWRITTEN 
 void Stack::intStackPrint() {
     cout << "Stack:";
     for (int i = size - 1; i >= 0; --i) {
