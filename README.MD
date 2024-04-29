@@ -13,7 +13,7 @@
 
 ## Emilie
 - int_stack.cpp
-    - pop, top, print DONE
+    - pop, top, print, lessthan DONE
     - int_stack.hpp DONE
 
 
