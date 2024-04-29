@@ -35,8 +35,6 @@ int Stack::intStackPush(int v){
     size++;
     return 1; //success
 }
-
-//TODO
 //Note: to preserve inportant functionality, please keep it
 //so that intStackPop takes an argument that allows the
 //value popped to be stored for later. Ex:
@@ -282,16 +280,22 @@ int Stack::intStackLessThan() { //<
 }
 
 //TODO
+//void Stack::intStackPrint() {
+    //string printString = "i:  v: \n";
+    //for (int i = 0; i < size; i++){
+        //string appendMe = to_string(i) + " | " + to_string(*contents[i]);
+        //printString += appendMe;
+
+    //cout << printString;
+
+//REWRITTEN by Emilie 
 void Stack::intStackPrint() {
-    string printString = "i:  v: \n";
-    for (int i = 0; i < size; i++){
-        string appendMe = to_string(i) + " | " + to_string(*contents[i]);
-        printString += appendMe;
+    cout << "Stack:";
+    for (int i = size - 1; i >= 0; --i) {
+        cout << " " << contents[i];
     }
-    cout << printString;
+    cout << endl;
 }
-
-
 //REWRITTEN
 int Stack::intStackSize() {
     return size;
