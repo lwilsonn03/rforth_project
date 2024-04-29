@@ -235,18 +235,18 @@ int Stack::intStackModOnly() {
     return intStackPush(nextToTopValue % topValue);
 }
 
-//TODO
+//REWRITTEN
 int Stack::intStackGreaterThan() { //>
     if (size < 2)
         return 0;
     int topValue, nextToTopValue, result;
     intStackPop(&topValue);
     intStackPop(&nextToTopValue);
-    if (topValue >= nextToTopValue){
-        result = 0;
+    if (topValue > nextToTopValue){ //Changed the condition to check if topValue is greater than nextToTopValue
+        result = 1; //Return 1 if topValue is greater than nextToTopValue
     }
     else {
-        result = -1;
+        result = 0; //Otherwise, return 0
     }
     return intStackPush(result);
 }
