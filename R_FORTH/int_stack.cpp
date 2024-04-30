@@ -280,12 +280,12 @@ int Stack::intStackCapacity() {
 }
 
 bool Stack::createMapEntry(const string& varName){
-    
+    variables[varName] = 0;
+    return true;
 }
 
 void Stack::createVariable(const string& varName, int value){
     variables[varName] = value;
-
 }
 
 bool Stack::getVariable(const string& varName, int& value){

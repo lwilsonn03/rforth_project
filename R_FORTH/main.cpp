@@ -9,6 +9,33 @@ using namespace std;
 
 Stack theStack(10);
 
+bool isValidVarName(char* name){
+    if(findTokenType(name) == WORD){
+
+        vector<string> reservedWords = 
+            {"bye", "push", "pop", "top", "dup", "swap", "over", "rot", "drop",
+            "2swap", "2over", "2drop", "2dup", "/mod", "mod"};
+
+        for (int i = 0; i < reservedWords.size(); i++){
+            int wordLength = reservedWords[i].length();
+            char current[wordLength + 1];
+            strcpy(current, reservedWords[i].c_str());
+            if(strcmp(name, current) == 0){ //if name matches a reserved word
+                return false;
+            }
+        }
+
+        int temp;
+        string nameString = name;
+        if (theStack.getVariable(nameString, temp)){ //if name matches previous variable
+            return false;
+        }
+
+        return true;
+    }
+    return false;
+}
+
 void processOneTok(char* tok){
     enum TokenTypeT type = findTokenType(tok);
 
@@ -21,8 +48,9 @@ void processOneTok(char* tok){
     else if (type == SYMBOL && strcmp(tok, "!") == 0) {
         int value;
         theStack.intStackPop(&value); // Get the value from the stack
+        char delim[] = " \t\n\r\f\v";
         char* varName = strtok(NULL, delim); // Get the variable name
-        if (isValidVariableName(varName)) {
+        if (isValidVarName(varName)) {
             theStack.createVariable(varName, value); // Assign value to the variable
         } else {
             cerr << "Invalid variable name: " << varName << endl;
@@ -103,32 +131,7 @@ void processOneTok(char* tok){
     }
 } 
 
-bool isValidVarName(char* name){
-    if(findTokenType(name) == WORD){
 
-        vector<string> reservedWords = 
-            {"bye", "push", "pop", "top", "dup", "swap", "over", "rot", "drop",
-            "2swap", "2over", "2drop", "2dup", "/mod", "mod"};
-
-        for (int i = 0; i < reservedWords.size(); i++){
-            int wordLength = reservedWords[i].length();
-            char current[wordLength + 1];
-            strcpy(current, reservedWords[i].c_str());
-            if(strcmp(name, current) == 0){ //if name matches a reserved word
-                return false;
-            }
-        }
-
-        int temp;
-        string nameString = name;
-        if (theStack.getVariable(nameString, temp)){ //if name matches previous variable
-            return false;
-        }
-
-        return true;
-    }
-    return false;
-}
 
 int main(int argc, char * * argv){
     string userString;
