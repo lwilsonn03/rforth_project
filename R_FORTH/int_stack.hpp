@@ -46,6 +46,7 @@ class Stack{
         int intStackSize();
         int intStackCapacity();
 
+        bool createMapEntry(const string& varName);
         void createVariable(const string& varName, int value);
         bool getVariable(const string& varName, int& value); 
 };

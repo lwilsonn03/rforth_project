@@ -279,6 +279,10 @@ int Stack::intStackCapacity() {
     return capacity;
 }
 
+bool Stack::createMapEntry(const string& varName){
+    
+}
+
 void Stack::createVariable(const string& varName, int value){
     variables[varName] = value;
 

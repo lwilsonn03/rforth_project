@@ -91,6 +91,9 @@ void processOneTok(char* tok){
     }
 } 
 
+bool isValidVarName(char* name){
+    
+}
 
 int main(int argc, char * * argv){
     string userString;
@@ -122,9 +125,18 @@ int main(int argc, char * * argv){
         while(tok != NULL){
             if (strcmp(tok, "variable") == 0){
                 //here's where we'll make the terminal process the command
+                tok = strtok(NULL, delim);
+                if(isValidVarName(tok)){ //psuedocode for future method
+                    theStack.createMapEntry(tok);
+                }
+                else{
+                    cerr << "Error: invalid variable name" << endl;
+                }
             }
-            processOneTok(tok);
-            tok = strtok(NULL, delim); 
+            else {
+                processOneTok(tok);
+                tok = strtok(NULL, delim); 
+            }
         }
         theStack.intStackPrint();
     }
