@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include "int_stack.hpp"
 
 using namespace std;
@@ -277,5 +278,14 @@ int Stack::intStackSize() {
 int Stack::intStackCapacity() {
     return capacity;
 }
+
+void Stack::createVariable(const string& varName, int value){
+
+}
+
+bool Stack::getVariable(const string& varName, int& value){
+    return false;
+} 
+
 
 

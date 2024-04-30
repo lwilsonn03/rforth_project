@@ -2,6 +2,7 @@
 #include <string>
 #include <string.h>
 #include <vector>
+#include <map>
 #include "int_stack.hpp"
 
 using namespace std;
@@ -119,6 +120,9 @@ int main(int argc, char * * argv){
         }
 
         while(tok != NULL){
+            if (strcmp(tok, "variable") == 0){
+                //here's where we'll make the terminal process the command
+            }
             processOneTok(tok);
             tok = strtok(NULL, delim); 
         }

@@ -8,6 +8,7 @@
 #include <queue>
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ class Stack{
         int capacity;
         int size;
         vector<int> contents;
+        map<string, int> varMap;
     public:
         Stack(int c);
         int intStackPush(int value);
@@ -44,11 +46,8 @@ class Stack{
         int intStackSize();
         int intStackCapacity();
 
-        // Function to create a variable
-         void createVariable(const string& varName, int value); //maybe like this?
-        
-        // Function to get the value of a variable
-         bool getVariable(const string& varName, int& value); //maybe like this?
+        void createVariable(const string& varName, int value);
+        bool getVariable(const string& varName, int& value); 
 };
 
 enum TokenTypeT findTokenType(string s);
