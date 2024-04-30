@@ -1,7 +1,7 @@
 # Current TODO: 
 
-- test: can push one stack value and print it
-- test: all stack methods can be used (1 line input, print correct result, quit)
+- DONE test: can push one stack value and print it
+- DONE test: all stack methods can be used (1 line input, print correct result, quit)
 - test: multiple lines of input, "bye" exits
 - implement: variables. 
     - creation: "variable var" (start with this line creating an object & verifying it exists)

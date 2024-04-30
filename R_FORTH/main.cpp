@@ -8,60 +8,87 @@ using namespace std;
 
 Stack theStack(10);
 
-// void processOneTok(char* tok){
-//     enum TokenTypeT type = findTokenType(tok);
+void processOneTok(char* tok){
+    enum TokenTypeT type = findTokenType(tok);
 
-//     //Numbers
-//     if (type == NUMBER){
-//         theStack.intStackPush(stoi(tok));
-//     }
+    //Numbers
+    if (type == NUMBER){
+        theStack.intStackPush(stoi(tok));
+    }
 
-//     //Operators
-//     else if (type == OPERATOR){
-//         *tok = (char)(*tok);
-//         switch(*tok){
-//             case '+':
-//                 theStack.intStackAdd();
-//                 break;
-//             case '-':
-//                 theStack.intStackSubtract();
-//                 break;
-//             case '*':
-//                 theStack.intStackMultiply();
-//                 break;
-//             case '/':
-//                 theStack.intStackDivide();
-//                 break;
-//             case '<':
-//                 theStack.intStackLessThan();
-//                 break;
-//             case '>':
-//                 theStack.intStackGreaterThan();
-//                 break;
-//             case ';':
-//                 //functions unimplemented
-//                 break;
-//             case ':':
-//                 //functions unimplemented
-//                 break;
-//             default: 
-//                 cout << "Unrecognized operator\n";
-//         }
-//     }
-//     //Words
-//     else if (type == WORD){
-//         if (strcmp(tok, "/mod") == 0){
-//             theStack.intStackModAndQuotient();
-//         }
-//         else if (strcmp(tok, "mod") == 0){
-//             theStack.intStackModOnly();
-//         }
-//     }
-//     //Unrecognized
-//     else {
-//         printf("Error: unrecognized symbol\n");
-//     }
-// } 
+    //Operators
+    else if (type == OPERATOR){
+        *tok = (char)(*tok);
+        switch(*tok){
+            case '+':
+                theStack.intStackAdd();
+                break;
+            case '-':
+                theStack.intStackSubtract();
+                break;
+            case '*':
+                theStack.intStackMultiply();
+                break;
+            case '/':
+                theStack.intStackDivide();
+                break;
+            case '<':
+                theStack.intStackLessThan();
+                break;
+            case '>':
+                theStack.intStackGreaterThan();
+                break;
+            case ';':
+                //functions unimplemented
+                break;
+            case ':':
+                //functions unimplemented
+                break;
+            default: 
+                cout << "Unrecognized operator\n";
+        }
+    }
+    //Words
+    else if (type == WORD){ //sincerist apologies for the else if monster, couldn't easily get switch to work here
+        if (strcmp(tok, "/mod") == 0){
+            theStack.intStackModAndQuotient();
+        }
+        else if (strcmp(tok, "mod") == 0){
+            theStack.intStackModOnly();
+        }
+        else if (strcmp(tok, "dup") == 0){
+            theStack.intStackDup();
+        }
+        else if (strcmp(tok, "swap") == 0){
+            theStack.intStackSwap();
+        }
+        else if (strcmp(tok, "over") == 0){
+            theStack.intStackOver();
+        }
+        else if (strcmp(tok, "rot") == 0){
+            theStack.intStackRot();
+        }
+        else if (strcmp(tok, "drop") == 0){
+            theStack.intStackDrop();
+        }
+        else if (strcmp(tok, "2swap") == 0){
+            theStack.intStack2Swap();
+        }
+        else if (strcmp(tok, "2drop") == 0){
+            theStack.intStack2Drop();
+        }
+        else if (strcmp(tok, "2dup") == 0){
+            theStack.intStack2Dup();
+        }
+        else if (strcmp(tok, "2over") == 0){
+            theStack.intStack2Over();
+        }
+    }
+    //Unrecognized
+    else {
+        cerr << "Error: unrecognized symbol" << endl;
+    }
+} 
 
 
 int main(int argc, char * * argv){
@@ -74,21 +101,36 @@ int main(int argc, char * * argv){
     char delim[] = " \t\n\r\f\v";
 
     cout << "Welcome to RForth" << endl;
-    // getline(cin, userString);
+    getline(cin, userString);
 
+    charsRead = userString.length(); 
+    char userArray[charsRead + 1];
+    strcpy(userArray, userString.c_str());
 
-    // charsRead = userString.length(); //potentially unecessary to convert userString to char[] but might be needed for strtok()
-    // char userArray[charsRead + 1];
-    // strcpy(userArray, userString.c_str());
+    // while (keepAcceptingInput){
+        char* tok = strtok(userArray, delim);
+        string tokString(tok);
+        // if (tok == NULL){
+        //     continue;
+        // }
+        // if(tokString.compare("bye") == 0){
+        //     keepAcceptingInput = false;
+        //     exitProgramNow = true;
+        // }
+        // else {
+            while(tok != NULL){
+                processOneTok(tok);
+                tok = strtok(NULL, delim);
+            }
+            theStack.intStackPrint();
+        // }
+        // if(keepAcceptingInput){
+        //     theStack.intStackPrint();
+        // }
 
-    //I want this to push 2 and 3, print the top value, then print the whole stack.
-    int temp; 
-    theStack.intStackPush(2);
-    theStack.intStackPush(3);
-    theStack.intStackPush(4);
-    // theStack.intStackTop(&temp);
-    // cout << temp << endl;
-    theStack.intStackPrint();
+    // }
+}
+
 
 
     /* 
@@ -98,31 +140,29 @@ int main(int argc, char * * argv){
     */
     //core terminal handling
 
-    // while (!exitProgramNow){
-    //     cin >> userString;
+//     while (!exitProgramNow){
+//         while (keepAcceptingInput){
+//             char* tok = strtok(userArray, delim);
+//             string tokString(tok);
+//             if (tok == NULL){
+//                 continue;
+//             }
+//             if(tokString.compare("bye") == 0){
+//                 keepAcceptingInput = false;
+//                 exitProgramNow = true;
+//             }
+//             else {
+//                 while(tok != NULL){
+//                     processOneTok(tok);
+//                     tok = strtok(NULL, delim);
+//                 }
+//             }
+//             if(keepAcceptingInput){
+//                 theStack.intStackPrint();
+//             }
 
-    //     while (keepAcceptingInput){
-    //         char* tok = strtok(userString, delim);
-    //         string tokString(tok);
-    //         if (tok == NULL){
-    //             continue;
-    //         }
-    //         if(tokString.compare("bye") == 0){
-    //             keepAcceptingInput = false;
-    //             exitProgramNow = true;
-    //         }
-    //         else {
-    //             while(tok != NULL){
-    //                 processOneTok(tok);
-    //                 tok = strtok(NULL, delim);
-    //             }
-    //         }
-    //         if(keepAcceptingInput){
-    //             theStack.intStackPrint();
-    //         }
+//         }
+//     }
 
-    //     }
-    // }
-
-    return 0;
-}
+//     return 0;
+// }

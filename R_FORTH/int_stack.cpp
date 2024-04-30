@@ -35,6 +35,7 @@ int Stack::intStackPop(int *topValue) {
         return 0; // fail
     }
     *topValue = contents[--size];
+    contents.pop_back();
     return 1; // success
 }
 
