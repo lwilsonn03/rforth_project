@@ -13,6 +13,11 @@ Stack::Stack(int c){
     size = 0;
 }
 
+//Thoughts on how we might intergrate variables: 
+// - storage & retrieval 
+// - add a function to create the variables (need to figure out how to store variable names and their values)
+// - store variables within stack class (need to figure out how to do this)
+
 
 /* ---CURRENT STORAGE METHOD--- */
 
