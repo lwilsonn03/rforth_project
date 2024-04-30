@@ -19,7 +19,7 @@ class Stack{
         int capacity;
         int size;
         vector<int> contents;
-        map<string, int> varMap;
+        map<string, int> variables;
     public:
         Stack(int c);
         int intStackPush(int value);

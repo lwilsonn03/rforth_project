@@ -92,7 +92,30 @@ void processOneTok(char* tok){
 } 
 
 bool isValidVarName(char* name){
-    
+    if(findTokenType(name) == WORD){
+
+        vector<string> reservedWords = 
+            {"bye", "push", "pop", "top", "dup", "swap", "over", "rot", "drop",
+            "2swap", "2over", "2drop", "2dup", "/mod", "mod"};
+
+        for (int i = 0; i < reservedWords.size(); i++){
+            int wordLength = reservedWords[i].length();
+            char current[wordLength + 1];
+            strcpy(current, reservedWords[i].c_str());
+            if(strcmp(name, current) == 0){ //if name matches a reserved word
+                return false;
+            }
+        }
+
+        int temp;
+        string nameString = name;
+        if (theStack.getVariable(nameString, temp)){ //if name matches previous variable
+            return false;
+        }
+
+        return true;
+    }
+    return false;
 }
 
 int main(int argc, char * * argv){
@@ -126,8 +149,10 @@ int main(int argc, char * * argv){
             if (strcmp(tok, "variable") == 0){
                 //here's where we'll make the terminal process the command
                 tok = strtok(NULL, delim);
-                if(isValidVarName(tok)){ //psuedocode for future method
-                    theStack.createMapEntry(tok);
+                if(isValidVarName(tok)){ 
+                    if (theStack.createMapEntry(tok)){
+                        cout << "variable " << tok << " created" << endl; 
+                    }
                 }
                 else{
                     cerr << "Error: invalid variable name" << endl;
