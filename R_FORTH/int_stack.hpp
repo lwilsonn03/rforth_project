@@ -43,6 +43,12 @@ class Stack{
         void intStackPrint();
         int intStackSize();
         int intStackCapacity();
+
+        // Function to create a variable
+         void createVariable(const string& varName, int value); //maybe like this?
+        
+        // Function to get the value of a variable
+         bool getVariable(const string& varName, int& value); //maybe like this?
 };
 
 enum TokenTypeT findTokenType(string s);
