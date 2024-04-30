@@ -17,6 +17,18 @@ void processOneTok(char* tok){
         theStack.intStackPush(stoi(tok));
     }
 
+    //Variable assignment
+    else if (type == SYMBOL && strcmp(tok, "!") == 0) {
+        int value;
+        theStack.intStackPop(&value); // Get the value from the stack
+        char* varName = strtok(NULL, delim); // Get the variable name
+        if (isValidVariableName(varName)) {
+            theStack.createVariable(varName, value); // Assign value to the variable
+        } else {
+            cerr << "Invalid variable name: " << varName << endl;
+        }
+    }
+
     //Operators
     else if (type == OPERATOR){
         *tok = (char)(*tok);
