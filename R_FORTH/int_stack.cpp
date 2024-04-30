@@ -263,12 +263,12 @@ int Stack::intStackLessThan() { //<
 
  
 void Stack::intStackPrint() {
-    cout << "Stack:";
+    cout << "(TOP)";
     for (int i = size - 1; i >= 0; --i) {
         int v = contents[i];
         cout << " " << v;
     }
-    cout << endl;
+    cout << " (BOTTOM)" << endl;
 }
 
 int Stack::intStackSize() {
@@ -300,6 +300,8 @@ bool Stack::getVariable(const string& varName, int& value){
 void Stack::printVarValue(const string& varName){
     cout << variables[varName] << endl;
 }
+
+
 
 
 

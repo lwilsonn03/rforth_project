@@ -11,16 +11,17 @@ Stack theStack(10);
 
 bool isValidVarName(char* name){
     if (name == nullptr){
-        cout << "null pointer :(" << endl;
+        cerr << "null pointer :(" << endl;
         return false;
     }
     if(findTokenType(name) == WORD){
 
         vector<string> reservedWords = 
             {"bye", "push", "pop", "top", "dup", "swap", "over", "rot", "drop",
-            "2swap", "2over", "2drop", "2dup", "/mod", "mod"};
+            "2swap", "2over", "2drop", "2dup", "/mod", "mod", "clear-stack"};
 
         for (int i = 0; i < reservedWords.size(); i++){
+            //iterate through reservedWords, convert current to char* for strcmp()
             int wordLength = reservedWords[i].length();
             char current[wordLength + 1];
             strcpy(current, reservedWords[i].c_str());
@@ -34,7 +35,6 @@ bool isValidVarName(char* name){
         if (theStack.getVariable(nameString, temp)){ //if name matches previous variable
             return false;
         }
-
         return true;
     }
     return false;
@@ -62,9 +62,10 @@ void processOneTok(char* tok, string wholeString){
         char *tok = new char[subLen + 1];
         str.copy(tok, subLen - 1);
 
+        // Assign value to the variable
         int temp;
         if (theStack.getVariable(tok, temp)) {
-            theStack.createVariable(tok, value); // Assign value to the variable
+            theStack.createVariable(tok, value); 
             cout << "Value " << value << " assigned to " << tok << endl;
         } else {
             cerr << "Invalid variable name: \"" << tok << "\"" << endl;
@@ -106,6 +107,9 @@ void processOneTok(char* tok, string wholeString){
     //Words
     else if (type == WORD){ //sincerist apologies for the else if monster, couldn't easily get switch to work here
         int tempvar;
+        if (strcmp(tok, "clear-stack") == 0){
+            theStack = Stack(10);
+        }
         if (strcmp(tok, "/mod") == 0){
             theStack.intStackModAndQuotient();
         }
@@ -161,6 +165,7 @@ int main(int argc, char * * argv){
 
     cout << "Welcome to RForth" << endl;
 
+    //core terminal loop
     while(keepAcceptingInput){
         getline(cin, userString);
         charsRead = userString.length(); 
@@ -175,9 +180,10 @@ int main(int argc, char * * argv){
             continue;
         }
 
+        //while there is a next token to handle
         while(tok != NULL){
+            //handle variable creation
             if (strcmp(tok, "variable") == 0){
-                //here's where we'll make the terminal process the command
                 tok = strtok(NULL, delim);
                 if(isValidVarName(tok)){ 
                     if (theStack.createMapEntry(tok)){
@@ -188,6 +194,8 @@ int main(int argc, char * * argv){
                     cerr << "Error: invalid variable name" << endl;
                 }
             }
+
+            //normal token processing
             else {
                 processOneTok(tok, userString);
                 tok = strtok(NULL, delim); 
