@@ -280,10 +280,16 @@ int Stack::intStackCapacity() {
 }
 
 void Stack::createVariable(const string& varName, int value){
+    variables[varName] = value;
 
 }
 
 bool Stack::getVariable(const string& varName, int& value){
+     auto it = variables.find(varName);
+    if (it != variables.end()) {
+        value = it->second;
+        return true;
+    }
     return false;
 } 
 
