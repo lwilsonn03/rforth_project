@@ -10,6 +10,10 @@ using namespace std;
 Stack theStack(10);
 
 bool isValidVarName(char* name){
+    if (name == nullptr){
+        cout << "null pointer :(" << endl;
+        return false;
+    }
     if(findTokenType(name) == WORD){
 
         vector<string> reservedWords = 
@@ -36,7 +40,7 @@ bool isValidVarName(char* name){
     return false;
 }
 
-void processOneTok(char* tok){
+void processOneTok(char* tok, string wholeString){
     enum TokenTypeT type = findTokenType(tok);
 
     //Numbers
@@ -49,11 +53,22 @@ void processOneTok(char* tok){
         int value;
         theStack.intStackPop(&value); // Get the value from the stack
         char delim[] = " \t\n\r\f\v";
-        char* varName = strtok(NULL, delim); // Get the variable name
-        if (isValidVarName(varName)) {
-            theStack.createVariable(varName, value); // Assign value to the variable
+
+        //extract potential name
+        int spacePos = wholeString.find(' ');
+        int exPos = wholeString.find('!', spacePos);
+        int subLen = exPos - spacePos - 1;
+        string str = wholeString.substr(spacePos + 1, subLen);
+        char *tok = new char[subLen + 1];
+        str.copy(tok, subLen - 1);
+
+        cout << tok << endl;
+        int temp;
+        if (theStack.getVariable(tok, temp)) {
+            theStack.createVariable(tok, value); // Assign value to the variable
+            theStack.printVarValue(tok);
         } else {
-            cerr << "Invalid variable name: " << varName << endl;
+            cerr << "Invalid variable name: \"" << tok << "\"" << endl;
         }
     }
 
@@ -143,9 +158,6 @@ int main(int argc, char * * argv){
 
     cout << "Welcome to RForth" << endl;
 
-
-
-
     while(keepAcceptingInput){
         getline(cin, userString);
         charsRead = userString.length(); 
@@ -174,7 +186,7 @@ int main(int argc, char * * argv){
                 }
             }
             else {
-                processOneTok(tok);
+                processOneTok(tok, userString);
                 tok = strtok(NULL, delim); 
             }
         }

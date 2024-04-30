@@ -297,6 +297,10 @@ bool Stack::getVariable(const string& varName, int& value){
     return false;
 } 
 
+void Stack::printVarValue(const string& varName){
+    cout << variables[varName] << endl;
+}
+
 
 
 

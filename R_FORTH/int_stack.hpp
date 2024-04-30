@@ -49,6 +49,7 @@ class Stack{
         bool createMapEntry(const string& varName);
         void createVariable(const string& varName, int value);
         bool getVariable(const string& varName, int& value); 
+        void printVarValue(const string& varName);
 };
 
 enum TokenTypeT findTokenType(string s);
