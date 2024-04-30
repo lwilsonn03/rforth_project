@@ -4,7 +4,7 @@
 - DONE test: all stack methods can be used (1 line input, print correct result, quit)
 - test: multiple lines of input, "bye" exits
 - implement: variables. 
-    - creation: "variable var" (start with this line creating an object & verifying it exists)
+    - creation: "variable var" (verify something gets created)
     - storage: "12 var !" (ensure variable objects can store an integer)
     - program searches for stored vars in user input (program can recall down the line that var is a valid token meaning 12)
 

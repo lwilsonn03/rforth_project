@@ -16,8 +16,8 @@ Stack::Stack(int c){
 
 /* ---CURRENT STORAGE METHOD--- */
 
-//The position in the stack as stored in the array is 
-//currently arr[0] = first stack item 
+//The position in the stack as stored in the vector is 
+//currently contents[0] = first stack item 
 int Stack::intStackPush(int v){
     if (size >= capacity){ 
         cout << "Stack is at full capacity." << endl;
