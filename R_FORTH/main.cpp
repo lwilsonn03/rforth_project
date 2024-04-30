@@ -153,8 +153,6 @@ void processOneTok(char* tok, string wholeString){
     }
 } 
 
-
-
 int main(int argc, char * * argv){
     string userString;
     int size = 0;
