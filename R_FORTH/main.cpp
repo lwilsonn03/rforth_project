@@ -62,11 +62,10 @@ void processOneTok(char* tok, string wholeString){
         char *tok = new char[subLen + 1];
         str.copy(tok, subLen - 1);
 
-        cout << tok << endl;
         int temp;
         if (theStack.getVariable(tok, temp)) {
             theStack.createVariable(tok, value); // Assign value to the variable
-            theStack.printVarValue(tok);
+            cout << "Value " << value << " assigned to " << tok << endl;
         } else {
             cerr << "Invalid variable name: \"" << tok << "\"" << endl;
         }
@@ -106,6 +105,7 @@ void processOneTok(char* tok, string wholeString){
     }
     //Words
     else if (type == WORD){ //sincerist apologies for the else if monster, couldn't easily get switch to work here
+        int tempvar;
         if (strcmp(tok, "/mod") == 0){
             theStack.intStackModAndQuotient();
         }
@@ -138,6 +138,9 @@ void processOneTok(char* tok, string wholeString){
         }
         else if (strcmp(tok, "2over") == 0){
             theStack.intStack2Over();
+        }
+        else if (theStack.getVariable(tok, tempvar) && tempvar != -1){
+            theStack.intStackPush(tempvar);
         }
     }
     //Unrecognized
