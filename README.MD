@@ -8,8 +8,7 @@ When downloaded, navigate to the R_FORTH folder in the command line. Running "./
 
 See below for a summary of the operations this project can handle. 
 
-
-#Original README for class purposes:
+# Original Class README
 
 ## RFORTH Features
 
